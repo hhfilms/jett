@@ -11,6 +11,7 @@ import PhotoGallery from "./PhotoGallery";
 import Contact from "./Contact";
 import Link from "next/link";
 import Schedule from "./Schedule";
+import {Dot} from "lucide-react";
 
 export default function FullPageWrapper() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -28,11 +29,18 @@ export default function FullPageWrapper() {
         <div className="absolute w-1/2 top-1/2 -translate-y-1/2 md:w-2/3 md:-left-36 xl:w-1/3 xl:left-28 p-4  text-right">
           <h2 className="text-6xl font-bold">Jett Lopez</h2>
           <h3 className="text-2xl font-light text-primary">
-            <ul className="md:list-disc md:flex min-w-0 flex-basis-0 flex-shrink flex-grow flex-nowrap justify-end gap-8">
-              <li className="list-none">Amarillo High</li>
-              <li>#2</li>
-              <li>QB</li>
-            </ul>
+            <div className="flex flex-col sm:flex-row justify-end sm:items-center gap-2">
+              <span className="text-right">Amarillo High</span>
+
+              <div className="flex gap-2 justify-end">
+                <span className="flex text-right items-center">
+                  <Dot className="hidden sm:block" size={36} strokeWidth={0.75} /> #2
+                </span>
+                <span className="flex text-right items-center">
+                  <Dot size={36} strokeWidth={0.75} /> QB
+                </span>
+              </div>
+            </div>
           </h3>
           <ul className="text-lg md:list-disc md:flex min-w-0 flex-basis-0 flex-shrink flex-grow flex-nowrap justify-end gap-8 mb-4">
             <li className="list-none">6&apos; 1&quot;, 205 lbs</li>
