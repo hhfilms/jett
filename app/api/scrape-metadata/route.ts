@@ -15,7 +15,14 @@ export async function GET(req: NextRequest) {
 
     const fallbackImage = `https://placehold.co/800/png?text=Article+Image+Not+Available&font=roboto`;
 
-    const isValidImage = (img: any) => {
+    interface ImageData {
+      url?: string;
+      size?: number;
+      height?: number;
+      width?: number;
+    }
+
+    const isValidImage = (img: ImageData) => {
       if (!img?.url) return false;
       const src = img.url;
       if (src.startsWith("data:image")) return false;
