@@ -95,9 +95,9 @@ export default function FullPageWrapper() {
         <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-950 text-center pt-4">Connect with Me</h3>
         <p className="px-4 lg:px-0 text-xl mb-4 text-center text-primary font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
         <Contact />
-        <div className="bg-neutral-950 p-12 flex flex-row items-center justify-center gap-4">
-          <h4 className="text-5xl font-semibold uppercase">Follow me:</h4>
-          <h5 className="text-5xl font-semibold uppercase text-primary">
+        <div className="bg-neutral-950 p-6 md:p-12 flex flex-col md:flex-row items-center justify-center md:gap-4">
+          <h4 className="text-3xl md:text-5xl font-semibold uppercase">Follow me:</h4>
+          <h5 className="text-3xl md:text-5xl font-semibold uppercase text-primary">
             <Link href="https://www.instagram.com/jett.lopezz/" target="_blank" className="hover:underline">
               @jett.lopezz
             </Link>
