@@ -35,7 +35,7 @@ export default function FullPageWrapper() {
             </ul>
           </h3>
           <ul className="text-lg md:list-disc md:flex min-w-0 flex-basis-0 flex-shrink flex-grow flex-nowrap justify-end gap-8 mb-4">
-            <li className="list-none">6' 1", 205 lbs</li>
+            <li className="list-none">6&apos; 1&quot;, 205 lbs</li>
             <li>class of 2026</li>
           </ul>
 
