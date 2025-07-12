@@ -79,7 +79,7 @@ export default function Schedule() {
   const sortedTeams = [...teams].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   return (
-    <main className="md:p-4 lg:p-0 flex-grow flex flex-col justify-center font-mukta">
+    <main className="px-2 pb-6 lg:p-0 flex-grow flex flex-col justify-center font-mukta">
       <div className="flex items-center justify-center mb-2 gap-2">
         <span className="bg-primary px-4 py-2">home</span> | <span className="bg-neutral-50 px-4 py-2 text-neutral-950">away</span>
       </div>
@@ -90,7 +90,7 @@ export default function Schedule() {
             {sortedTeams.map((team, index) => (
               <div key={index} className={`flex items-center justify-between p-2 shadow-md ${team.home ? "bg-primary text-neutral-50" : "bg-neutral-100 text-neutral-950"}`}>
                 <div className="flex items-center gap-2 capitalize">
-                  <div className="relative w-6 h-6 lg:w-12 lg:h-12">
+                  <div className="relative w-6 h-6 lg:w-8 lg:h-8">
                     <Image fill src={`/${team.image}.png`} alt={`${team.opponent} logo`} className="object-cover rounded-full" />
                   </div>
                   <span className="text-lg font-semibold">{team.opponent.charAt(0).toUpperCase() + team.opponent.slice(1)}</span>

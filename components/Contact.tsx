@@ -1,6 +1,6 @@
 "use client";
 import {useState} from "react";
-import {Send} from "lucide-react";
+import {Send, Loader} from "lucide-react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ export default function ContactForm() {
     subject: "",
     message: "",
   });
+  const [isSending, setIsSending] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({...formData, [e.target.name]: e.target.value});
@@ -16,7 +18,8 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setIsSending(true);
+    setStatusMessage("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -28,12 +31,17 @@ export default function ContactForm() {
 
       if (!res.ok) {
         console.error("Server error:", data.error || "Unknown error");
+        setStatusMessage("There was an error sending your message.");
       } else {
         console.log("Email sent successfully!");
-        // optionally clear form
+        setStatusMessage("Message sent successfully!");
+        setFormData({name: "", email: "", subject: "", message: ""});
       }
     } catch (err) {
       console.error("Network or parsing error:", err);
+      setStatusMessage("There was a network error. Please try again.");
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -50,9 +58,16 @@ export default function ContactForm() {
             <textarea name="message" placeholder="Your Message" required rows={8} value={formData.message} onChange={handleChange} className="p-3 bg-gray-200 resize-none" />
           </div>
           <button type="submit" className="text-neutral-50 mx-auto text-sm font-semibold py-4 px-12 uppercase bg-secondary hover:opacity-70 flex items-center justify-center gap-2">
-            Send Message <Send size={24} strokeWidth={1} />
+            {isSending ? (
+              <Loader className="animate-spin" />
+            ) : (
+              <>
+                Send Message <Send size={24} strokeWidth={1} />
+              </>
+            )}
           </button>
         </form>
+        {statusMessage && <p className="text-center mt-4 text-sm text-green-600">{statusMessage}</p>}
       </div>
     </main>
   );
