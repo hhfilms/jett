@@ -23,7 +23,7 @@ export default function FullPageWrapper() {
   return (
     <div className="h-screen overflow-y-scroll snap-y snap-mandatory relative">
       {/* Bio */}
-      <section data-section-name="Bio" id="one" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950 snap-start relative">
+      <section data-section-name="Bio" id="one" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950  relative">
         <Header classes="px-4" />
         <div className="absolute w-1/2 top-1/2 -translate-y-1/2 md:w-2/3 md:-left-36 xl:w-1/3 xl:left-28 p-4  text-right">
           <h2 className="text-6xl font-bold">Jett Lopez</h2>
@@ -61,7 +61,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Stats */}
-      <section data-section-name="Stats" id="two" className="md:h-screen bg-neutral-50 snap-start">
+      <section data-section-name="Stats" id="two" className="lg:h-screen bg-neutral-50 ">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-950 text-center py-4">2025 in Season Stats</h3>
           <StatChart />
@@ -69,7 +69,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Articles*/}
-      <section data-section-name="News" id="three" className="bg-neutral-950 md:h-screen snap-start">
+      <section data-section-name="News" id="three" className="bg-neutral-950 md:h-screen ">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-50 text-center py-4">In the News</h3>
           <Articles />
@@ -77,7 +77,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Photos */}
-      <section data-section-name="Action" id="four" className="md:h-screen bg-neutral-50 snap-start w-full">
+      <section data-section-name="Action" id="four" className="lg:h-screen bg-neutral-50  w-full">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-950 text-center py-4">In Action</h3>
           <PhotoGallery />
@@ -85,13 +85,13 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Section 5 */}
-      {/* <section data-section-name="Videos" id="five" className="md:h-screen bg-neutral-50 snap-start">
+      {/* <section data-section-name="Videos" id="five" className="md:h-screen bg-neutral-50 ">
         <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-950 text-center py-4">Videos</h3>
         <main className="w-full">videos</main>
       </section> */}
 
       {/* Contact */}
-      <section data-section-name="Contact" id="seven" className="md:h-screen bg-neutral-50 snap-start flex flex-col">
+      <section data-section-name="Contact" id="seven" className="lg:h-screen bg-neutral-50  flex flex-col">
         <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-950 text-center pt-4">Connect with Me</h3>
         <p className="px-4 lg:px-0 text-xl mb-4 text-center text-primary font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
         <Contact />
@@ -106,7 +106,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Schedule */}
-      <section data-section-name="Schedule" id="eight" className="lg:h-screen bg-secondary snap-start lg:flex flex-row justify-center">
+      <section data-section-name="Schedule" id="eight" className="lg:h-screen bg-secondary  lg:flex flex-row justify-center">
         <div className="lg:flex h-screen lg:w-1/2">
           <video src="/jettlopez.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
         </div>

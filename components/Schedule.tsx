@@ -90,7 +90,7 @@ export default function Schedule() {
             {sortedTeams.map((team, index) => (
               <div key={index} className={`flex items-center justify-between p-2 shadow-md ${team.home ? "bg-primary text-neutral-50" : "bg-neutral-100 text-neutral-950"}`}>
                 <div className="flex items-center gap-2 capitalize">
-                  <div className="relative w-12 h-12">
+                  <div className="relative w-6 h-6 lg:w-12 lg:h-12">
                     <Image fill src={`/${team.image}.png`} alt={`${team.opponent} logo`} className="object-cover rounded-full" />
                   </div>
                   <span className="text-lg font-semibold">{team.opponent.charAt(0).toUpperCase() + team.opponent.slice(1)}</span>
