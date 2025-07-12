@@ -6,6 +6,7 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -35,7 +36,7 @@ export default function ContactForm() {
       } else {
         console.log("Email sent successfully!");
         setStatusMessage("Message sent successfully!");
-        setFormData({name: "", email: "", subject: "", message: ""});
+        setFormData({name: "", email: "", subject: "", message: "", phone: ""});
       }
     } catch (err) {
       console.error("Network or parsing error:", err);
@@ -50,12 +51,13 @@ export default function ContactForm() {
       <div className="w-full max-w-4xl">
         <form onSubmit={handleSubmit} className="flex flex-col justify-between gap-4 font-extralight mb-12">
           <div className="flex flex-col gap-8">
+            <input type="text" name="name" placeholder="First & Last Name" required value={formData.name} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
             <div className="flex flex-row gap-4">
-              <input type="text" name="name" placeholder="Your Name" required value={formData.name} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
-              <input type="email" name="email" placeholder="Your Email" required value={formData.email} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
+              <input type="text" name="phone" placeholder="Phone #" required value={formData.name} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
+              <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
             </div>
             <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} className="p-3 bg-gray-200" />
-            <textarea name="message" placeholder="Your Message" required rows={8} value={formData.message} onChange={handleChange} className="p-3 bg-gray-200 resize-none" />
+            <textarea name="message" placeholder="Message" required rows={8} value={formData.message} onChange={handleChange} className="p-3 bg-gray-200 resize-none" />
           </div>
           <button type="submit" className="text-neutral-50 mx-auto text-sm font-semibold py-4 px-12 uppercase bg-secondary hover:opacity-70 flex items-center justify-center gap-2">
             {isSending ? (
