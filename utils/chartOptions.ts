@@ -44,12 +44,15 @@ const createOptions = (titleText: string, stats?: StatArray): ChartOptions<"bar"
 
 export const getChartOptions = (stats: StatArray) => ({
   passing: createOptions("Completions vs Attempts", stats),
-  yards: createOptions("Passing Yards", stats),
+  yards: createOptions("Passing YPG", stats),
   percentage: createOptions("Completion Percentage", stats),
-  rushing: createOptions("Rushing Yards", stats),
+  rushing: createOptions("Rushing YPG", stats),
   tds: {
-    ...createOptions("Touchdowns Per Game", stats),
+    ...createOptions("Total TDs Per Game", stats),
     scales: {x: {stacked: true}, y: {stacked: true, beginAtZero: true}},
   },
-  pie: createOptions("Touchdowns vs Interceptions (Total)"),
+  tdsInts: {
+    ...createOptions("TDs vs INTs Per Game", stats),
+  },
+  pie: createOptions("TDs vs INTs Per Game"),
 });

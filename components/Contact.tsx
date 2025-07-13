@@ -47,7 +47,7 @@ export default function ContactForm() {
   };
 
   return (
-    <main className="p-4 lg:p-0 flex-grow flex justify-center text-neutral-600">
+    <main className="p-4 lg:p-0 flex-grow flex justify-center text-neutral-600 w-full">
       <div className="w-full max-w-4xl">
         <form onSubmit={handleSubmit} className="flex flex-col justify-between gap-4 font-extralight mb-12">
           <div className="flex flex-col gap-4">

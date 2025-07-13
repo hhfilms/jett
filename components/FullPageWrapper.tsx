@@ -24,7 +24,7 @@ export default function FullPageWrapper() {
   return (
     <div className="h-screen overflow-y-scroll snap-y snap-mandatory relative">
       {/* Bio */}
-      <section data-section-name="Bio" id="one" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950 md:snap-start relative">
+      <section data-section-name="Bio" id="bio" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950 md:snap-start relative">
         <Header classes="px-4" />
         <div className="absolute w-1/2 top-1/2 -translate-y-1/2 md:w-2/3 md:-left-36 xl:w-1/3 xl:left-28 p-4  text-right">
           <h2 className="text-6xl font-bold">Jett Lopez</h2>
@@ -69,7 +69,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Stats */}
-      <section data-section-name="Stats" id="two" className="lg:h-screen bg-neutral-50 md:snap-start">
+      <section data-section-name="Stats" id="stats" className="lg:h-screen bg-neutral-50 md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">2025 in Season Stats</h3>
           <StatChart />
@@ -77,7 +77,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Articles*/}
-      <section data-section-name="News" id="three" className="bg-neutral-950 md:h-screen md:snap-start">
+      <section data-section-name="News" id="news" className="bg-neutral-950 md:h-screen md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-50 text-center py-4">In the News</h3>
           <Articles />
@@ -85,9 +85,9 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Photos */}
-      <section data-section-name="Action" id="four" className="lg:h-screen bg-neutral-50 md:snap-start w-full">
+      <section data-section-name="Photos" id="photos" className="lg:h-screen bg-neutral-50 md:snap-start w-full">
         <div className="flex flex-col justify-center items-center w-full h-full">
-          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">In Action</h3>
+          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">Photos</h3>
           <PhotoGallery />
         </div>
       </section>
@@ -99,7 +99,7 @@ export default function FullPageWrapper() {
       </section> */}
 
       {/* Contact */}
-      <section data-section-name="Contact" id="seven" className="lg:h-screen bg-neutral-50 md:snap-start flex flex-col">
+      <section data-section-name="Contact" id="contact" className="lg:h-screen bg-neutral-50 md:snap-start flex flex-col">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Connect with Me</h3>
           <p className="px-4 lg:px-0 text-xl mb-4 text-center text-primary font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
@@ -116,15 +116,13 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Schedule */}
-      <section data-section-name="Schedule" id="eight" className="lg:h-screen overflow-hidden md:snap-start lg:flex flex-row justify-center">
-        <div className="lg:flex h-screen lg:w-1/2">
+      <section data-section-name="Schedule" id="schedule" className="lg:h-screen overflow-hidden md:snap-start flex flex-col lg:flex-row">
+        <div className="w-full lg:w-1/2 aspect-video lg:aspect-auto lg:h-full relative">
           <video src="/jettlopez.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
         </div>
-        <div className="lg:flex flex-col lg:w-1/2 lg:p-12 flex-grow flex justify-center text-neutral-50">
-          <h3 className="uppercase text-2xl md:text-5xl  xl:text-7xl font-bold text-neutral-950 text-center">2025 Schedule</h3>
-          <div className="">
-            <Schedule />
-          </div>
+        <div className="w-full lg:w-1/2 p-4 lg:p-12 flex flex-col justify-center text-neutral-50 ">
+          <h3 className="uppercase text-2xl md:text-5xl xl:text-7xl font-bold text-center text-primary mb-4">2025 Schedule</h3>
+          <Schedule />
         </div>
       </section>
       <DotNavigation />

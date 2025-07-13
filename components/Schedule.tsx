@@ -88,7 +88,7 @@ export default function Schedule() {
         <div className="w-full max-w-4xl">
           <div className="grid grid-cols-3 gap-4 lg:grid-cols-4">
             {sortedTeams.map((team, index) => (
-              <div key={index} className={`min-h-40 flex flex-col items-center justify-center p-2 shadow-md ${team.home ? "bg-secondary text-neutral-50" : "bg-neutral-100 text-neutral-950"}`}>
+              <div key={index} className={`min-h-40 flex flex-col items-center justify-center rounded-lg p-2 shadow-lg ${team.home ? "bg-secondary text-neutral-50" : "bg-neutral-100 text-neutral-950"}`}>
                 <div className="capitalize flex flex-col items-center justify-center">
                   <div className="relative w-6 h-6 lg:w-8 lg:h-8 mb-2">
                     <Image fill src={`/${team.image}.png`} alt={`${team.opponent} logo`} className="object-cover rounded-full" />

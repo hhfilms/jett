@@ -5,12 +5,12 @@ import {useSanityData} from "@/context/SanityDataContext";
 export default function Articles() {
   const {articles} = useSanityData();
   return (
-    <main className="container mx-auto max-w-4xl px-4 py-8">
-      <div className="grid md:grid-cols-2 gap-6">
+    <main className="container px-4 py-8">
+      <div className="flex flex-wrap justify-between gap-6">
         {articles.map((article) => (
-          <div key={article._id} className="bg-white rounded overflow-hidden shadow-lg">
+          <div key={article._id} className="bg-white rounded overflow-hidden shadow-lg w-full sm:w-[48%] md:w-[23%]">
             <div className="relative w-full h-52">
-              <Image src={article.imageUrl} alt={article.title} fill className="object-cover" />
+              <Image src={article.imageUrl} alt={article.title} fill className="object-cover" unoptimized />
               <span className="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded">{new Date(article.publishedAt).toLocaleDateString()}</span>
             </div>
 

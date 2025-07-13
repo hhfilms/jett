@@ -6,7 +6,7 @@ import {useSanityData} from "@/context/SanityDataContext";
 
 export default function StatChart() {
   const {stats} = useSanityData();
-  const {passing: passingOptions, yards: yardsOptions, percentage: percentageOptions, rushing: rushingOptions, tds: tdsOptions, pie: pieOptions} = getChartOptions(stats);
+  const {passing: passingOptions, yards: yardsOptions, percentage: percentageOptions, rushing: rushingOptions, tds: tdsOptions, tdsInts: tdsIntsOptions} = getChartOptions(stats);
 
   // data (unchanged)
   const completionPercentage = stats.map((stat) => {
@@ -91,11 +91,17 @@ export default function StatChart() {
   const tdsSum = tds.reduce((acc, cur) => acc + cur, 0);
 
   const tdsVsIntsChartData = {
-    labels: ["Touchdowns", "Interceptions"],
+    labels: stats.map((_, index) => `Week ${index + 1}`),
     datasets: [
       {
-        data: [tdsSum, intSum],
-        backgroundColor: ["rgba(179, 137, 63, 0.5)", "rgba(63, 105, 179, 0.5)"],
+        label: "Passing Touchdowns",
+        data: stats.map((stat) => stat.touchdowns),
+        backgroundColor: "rgba(179, 137, 63, 0.5)",
+      },
+      {
+        label: "Interceptions",
+        data: stats.map((stat) => stat.interceptions),
+        backgroundColor: "rgba(63, 105, 179, 0.5)",
       },
     ],
   };
@@ -106,16 +112,16 @@ export default function StatChart() {
         <Bar data={passingChartData} options={passingOptions as import("chart.js").ChartOptions<"bar">} />
       </div>
       <div className="p-4 h-[300px] flex justify-between">
+        <Bar data={tdsPerGameChartData} options={tdsOptions as import("chart.js").ChartOptions<"bar">} />
+      </div>
+      <div className="p-4 h-[300px] flex justify-between">
+        <Bar data={tdsVsIntsChartData} options={tdsIntsOptions as import("chart.js").ChartOptions<"bar">} />
+      </div>
+      <div className="p-4 h-[300px] flex justify-between">
         <Line data={yardsPerGameChartData} options={yardsOptions as import("chart.js").ChartOptions<"line">} />
       </div>
       <div className="p-4 h-[300px] flex justify-between">
         <Line data={percentageChartData} options={percentageOptions as import("chart.js").ChartOptions<"line">} />
-      </div>
-      <div className="p-4 h-[300px] flex justify-between">
-        <Bar data={tdsPerGameChartData} options={tdsOptions as import("chart.js").ChartOptions<"bar">} />
-      </div>
-      <div className="p-4 h-[300px] flex justify-between">
-        <Pie data={tdsVsIntsChartData} options={pieOptions as import("chart.js").ChartOptions<"pie">} />
       </div>
       <div className="p-4 h-[300px] flex justify-between">
         <Line data={rushingChartData} options={rushingOptions as import("chart.js").ChartOptions<"line">} />
