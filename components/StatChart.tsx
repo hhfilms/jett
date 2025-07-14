@@ -1,6 +1,6 @@
 "use client";
 import "chart.js/auto";
-import {Bar, Line, Pie} from "react-chartjs-2";
+import {Bar, Line} from "react-chartjs-2";
 import {getChartOptions} from "@/utils/chartOptions";
 import {useSanityData} from "@/context/SanityDataContext";
 
@@ -85,10 +85,10 @@ export default function StatChart() {
     ],
   };
 
-  const ints = stats.map((stat) => stat.interceptions);
-  const intSum = ints.reduce((acc, cur) => acc + cur, 0);
-  const tds = stats.map((stat) => stat.touchdowns);
-  const tdsSum = tds.reduce((acc, cur) => acc + cur, 0);
+  // const ints = stats.map((stat) => stat.interceptions);
+  // const intSum = ints.reduce((acc, cur) => acc + cur, 0);
+  // const tds = stats.map((stat) => stat.touchdowns);
+  // const tdsSum = tds.reduce((acc, cur) => acc + cur, 0);
 
   const tdsVsIntsChartData = {
     labels: stats.map((_, index) => `Week ${index + 1}`),
