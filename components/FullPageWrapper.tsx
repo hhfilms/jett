@@ -85,7 +85,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Photos */}
-      <section data-section-name="Photos" id="photos" className="lg:h-screen bg-neutral-50 md:snap-start w-full">
+      <section data-section-name="Photos" id="photos" className=" bg-neutral-50 md:snap-start w-full">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">Photos</h3>
           <PhotoGallery />
@@ -99,8 +99,8 @@ export default function FullPageWrapper() {
       </section> */}
 
       {/* Contact */}
-      <section data-section-name="Contact" id="contact" className="lg:h-screen bg-neutral-50 md:snap-start flex flex-col">
-        <div className="flex flex-col justify-center items-center w-full h-full">
+      <section data-section-name="Contact" id="contact" className=" bg-neutral-50 md:snap-start flex flex-col">
+        <div className="flex-grow">
           <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Connect with Me</h3>
           <p className="px-4 lg:px-0 text-xl mb-4 text-center text-primary font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
           <Contact />
