@@ -1,39 +1,80 @@
 "use client";
 
 import Image from "next/image";
-import {useState, useRef, useEffect} from "react";
+import {useState, useRef, useEffect, MutableRefObject} from "react";
 import {urlFor} from "@/sanity/lib/image";
 import {useSanityData} from "@/context/SanityDataContext";
+import {useKeenSlider, KeenSliderPlugin, KeenSliderInstance} from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+
+function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): KeenSliderPlugin {
+  return (slider) => {
+    function removeActive() {
+      slider.slides.forEach((slide) => {
+        slide.classList.remove("active");
+      });
+    }
+    function addActive(idx: number) {
+      slider.slides[idx].classList.add("active");
+    }
+
+    function addClickEvents() {
+      slider.slides.forEach((slide, idx) => {
+        slide.addEventListener("click", () => {
+          if (mainRef.current) mainRef.current.moveToIdx(idx);
+        });
+      });
+    }
+
+    slider.on("created", () => {
+      if (!mainRef.current) return;
+      addActive(slider.track.details.rel);
+      addClickEvents();
+      mainRef.current.on("animationStarted", (main: KeenSliderInstance) => {
+        removeActive();
+        const next = main.animator.targetIdx || 0;
+        addActive(main.track.absToRel(next));
+        slider.moveToIdx(Math.min(slider.track.details.maxIdx, next));
+      });
+    });
+  };
+}
 
 export default function PhotoGallery() {
   const {photos} = useSanityData();
   const [featured, setFeatured] = useState(photos[0]);
 
-  const featuredRef = useRef<HTMLDivElement | null>(null);
-  const [thumbHeight, setThumbHeight] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (featuredRef.current) {
-      setThumbHeight(featuredRef.current.offsetHeight);
-    }
-  }, [featured]);
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
+  });
+  const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      slides: {
+        perView: 4,
+        spacing: 10,
+      },
+    },
+    [ThumbnailPlugin(instanceRef)]
+  );
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 p-6 w-full">
+    <div className="w-full max-w-7xl p-8">
       {/* Left: Featured image */}
-      <div ref={featuredRef} className="w-full md:w-1/2 aspect-[4/3] relative rounded overflow-hidden">
-        <Image fill className="object-cover" src={urlFor(featured.image).width(800).height(600).url()} alt={featured.caption || "Gallery Image"} />
+      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-[16/9] relative">
+        <div className="keen-slider__slide number-slide1 relative w-full h-full">
+          <Image src={urlFor(featured.image).width(1200).height(900).url()} alt={featured.caption || "Gallery Image"} fill className="object-cover" sizes="100vw" />
+        </div>
       </div>
 
       {/* Right: Thumbnails */}
-      <div className="w-full md:w-1/2 overflow-y-scroll overflow-x-hidden scrollbar-hide" style={{height: thumbHeight || undefined}}>
-        <div className="flex flex-wrap justify-between gap-2">
-          {photos.map((photo) => (
-            <div key={photo._id} className="relative h-52 w-full sm:w-[48%] md:w-[23%] rounded-lg overflow-hidden cursor-pointer" onClick={() => setFeatured(photo)} title={photo.caption}>
-              <Image src={urlFor(photo.image).width(200).height(200).url()} alt={photo.caption || "Gallery Image"} fill className="object-cover" />
-            </div>
-          ))}
-        </div>
+      {/* Thumbnails */}
+      <div ref={thumbnailRef} className="keen-slider thumbnail">
+        {photos.map((photo, idx) => (
+          <div key={photo._id} className={`keen-slider__slide number-slide${idx}`} onClick={() => setFeatured(photo)} title={photo.caption}>
+            <Image width={500} height={500} src={urlFor(photo.image).width(200).height(200).url()} alt={photo.caption || "Gallery Image"} />
+          </div>
+        ))}
       </div>
     </div>
   );
