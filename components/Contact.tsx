@@ -47,19 +47,19 @@ export default function ContactForm() {
   };
 
   return (
-    <main className="p-4 lg:p-0 flex-grow flex justify-center text-neutral-600 w-full">
-      <div className="w-full max-w-4xl">
-        <form onSubmit={handleSubmit} className="flex flex-col justify-between gap-4 font-extralight mb-12">
+    <main className="w-full md:max-w-5xl lg:py-2 lg:px-12 mb-22 text-neutral-600">
+      <div className="w-full bg-[#e0e5ec] p-8 lg:rounded-2xl ">
+        <form onSubmit={handleSubmit} className="flex flex-col justify-between gap-4 mb-12">
           <div className="flex flex-col gap-4">
-            <input type="text" name="name" placeholder="First & Last Name" required value={formData.name} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
+            <input type="text" name="name" placeholder="First & Last Name" required value={formData.name} onChange={handleChange} className="p-3 w-full rounded-xl border-none bg-[#e0e5ec] shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]" />
             <div className="flex flex-row gap-4">
-              <input type="text" name="phone" placeholder="Phone #" required value={formData.name} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
-              <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="p-3 bg-gray-200 w-full" />
+              <input type="text" name="phone" placeholder="Phone #" required value={formData.phone} onChange={handleChange} className="p-3 w-full rounded-xl border-none bg-[#e0e5ec] shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]" />
+              <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="p-3 w-full rounded-xl border-none bg-[#e0e5ec] shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]" />
             </div>
-            <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} className="p-3 bg-gray-200" />
-            <textarea name="message" placeholder="Message" required rows={8} value={formData.message} onChange={handleChange} className="p-3 bg-gray-200 resize-none" />
+            <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} className="p-3 rounded-xl border-none bg-[#e0e5ec] shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]" />
+            <textarea name="message" placeholder="Message" required rows={8} value={formData.message} onChange={handleChange} className="p-3 rounded-xl border-none bg-[#e0e5ec]  resize-none shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]"  />
           </div>
-          <button type="submit" className="text-neutral-50 mx-auto text-sm font-semibold py-4 px-12 uppercase bg-secondary hover:opacity-70 flex items-center justify-center gap-2">
+          <button type="submit" className="w-full mt-3 p-3 font-semibold uppercase rounded-xl bg-[#e0e5ec] shadow-[2px_2px_10px_#c2c8d0,-6px_-6px_10px_#ffffff] hover:bg-[#d6dce4] flex items-center justify-center gap-2 text-neutral-500">
             {isSending ? (
               <Loader className="animate-spin" />
             ) : (

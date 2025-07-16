@@ -71,7 +71,7 @@ export default function FullPageWrapper() {
       {/* Stats */}
       <section data-section-name="Stats" id="stats" className="lg:h-screen bg-neutral-50 md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
-          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">2025 in Season Stats</h3>
+          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">2025 in Season Stats</h3>
           <StatChart />
         </div>
       </section>
@@ -79,7 +79,7 @@ export default function FullPageWrapper() {
       {/* Articles*/}
       <section data-section-name="News" id="news" className="bg-neutral-950 md:h-screen md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
-          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-50 text-center py-4">In the News</h3>
+          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-50 text-center pt-4">In the News</h3>
           <Articles />
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function FullPageWrapper() {
       {/* Photos */}
       <section data-section-name="Photos" id="photos" className=" bg-neutral-50 md:snap-start w-full">
         <div className="flex flex-col justify-center items-center w-full h-full">
-          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">Photos</h3>
+          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Photos</h3>
           <PhotoGallery />
         </div>
       </section>
@@ -99,10 +99,10 @@ export default function FullPageWrapper() {
       </section> */}
 
       {/* Contact */}
-      <section data-section-name="Contact" id="contact" className=" bg-neutral-50 md:snap-start flex flex-col">
-        <div className="flex-grow">
+      <section data-section-name="Contact" id="contact" className=" bg-[#e0e5ec] md:snap-start w-full">
+        <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Connect with Me</h3>
-          <p className="px-4 lg:px-0 text-xl mb-4 text-center text-primary font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
+          <p className="px-4 lg:px-0 text-xl mb-4 text-center text-neutral-500 font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
           <Contact />
         </div>
         <div className="bg-neutral-950 p-6 md:p-8 flex flex-col md:flex-row items-center justify-center md:gap-4">
@@ -121,7 +121,7 @@ export default function FullPageWrapper() {
           <video src="/jettlopez.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
         </div>
         <div className="w-full lg:w-1/2 p-4 lg:p-12 flex flex-col justify-center text-neutral-50 ">
-          <h3 className="uppercase text-2xl md:text-5xl xl:text-7xl font-bold text-center text-primary mb-4">2025 Schedule</h3>
+          <h3 className="text-2xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">2025 Schedule</h3>
           <Schedule />
         </div>
       </section>

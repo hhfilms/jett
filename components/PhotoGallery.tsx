@@ -1,25 +1,26 @@
-"use client";
-
+import React from "react";
 import Image from "next/image";
-import {useState, useRef, useEffect, MutableRefObject} from "react";
+
 import {urlFor} from "@/sanity/lib/image";
 import {useSanityData} from "@/context/SanityDataContext";
-import {useKeenSlider, KeenSliderPlugin, KeenSliderInstance} from "keen-slider/react";
+import {useState} from "react";
+import {useKeenSlider} from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import {ChevronLeft, ChevronRight} from "lucide-react";
 
-function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): KeenSliderPlugin {
-  return (slider) => {
+function ThumbnailPlugin(mainRef: any) {
+  return (slider: any) => {
     function removeActive() {
-      slider.slides.forEach((slide) => {
+      slider.slides.forEach((slide: any) => {
         slide.classList.remove("active");
       });
     }
-    function addActive(idx: number) {
+    function addActive(idx: any) {
       slider.slides[idx].classList.add("active");
     }
 
     function addClickEvents() {
-      slider.slides.forEach((slide, idx) => {
+      slider.slides.forEach((slide: any, idx: any) => {
         slide.addEventListener("click", () => {
           if (mainRef.current) mainRef.current.moveToIdx(idx);
         });
@@ -30,7 +31,7 @@ function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): 
       if (!mainRef.current) return;
       addActive(slider.track.details.rel);
       addClickEvents();
-      mainRef.current.on("animationStarted", (main: KeenSliderInstance) => {
+      mainRef.current.on("animationStarted", (main: any) => {
         removeActive();
         const next = main.animator.targetIdx || 0;
         addActive(main.track.absToRel(next));
@@ -41,13 +42,21 @@ function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): 
 }
 
 export default function PhotoGallery() {
+  const arrowClasses = "absolute block top-1/3 bg-gray-50 -translate-y-1/2 cursor-pointer";
   const {photos} = useSanityData();
-  const [featured, setFeatured] = useState(photos[0]);
-
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
   });
-  const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
+
+  const [thumbnailRef] = useKeenSlider(
     {
       initial: 0,
       slides: {
@@ -59,19 +68,40 @@ export default function PhotoGallery() {
   );
 
   return (
-    <div className="w-full max-w-7xl p-8">
-      {/* Left: Featured image */}
-      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-[16/9] relative">
-        <div className="keen-slider__slide number-slide1 relative w-full h-full">
-          <Image src={urlFor(featured.image).width(1200).height(900).url()} alt={featured.caption || "Gallery Image"} fill className="object-cover" sizes="100vw" />
-        </div>
+    <div className="w-full max-w-5xl py-2 px-12 mb-22 relative">
+      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-square md:aspect-video relative">
+        {photos.map((photo, idx) => (
+          <div key={photo._id} className={`keen-slider__slide number-slide${idx} relative w-full h-full`} title={photo.caption}>
+            <Image fill quality={100} className="object-contain object-center" src={urlFor(photo.image).width(1000).height(1000).url()} alt={photo.caption || "Gallery Image"} />
+          </div>
+        ))}
       </div>
+      {loaded && instanceRef.current && (
+        <>
+          <ChevronLeft
+            className={`${arrowClasses} left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
+            strokeWidth={2}
+            size={36}
+            onClick={(e) => {
+              e.stopPropagation();
+              instanceRef.current?.prev();
+            }}
+          />
+          <ChevronRight
+            className={`${arrowClasses} right-12  ${currentSlide === instanceRef.current.track.details.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
+            strokeWidth={2}
+            size={36}
+            onClick={(e) => {
+              e.stopPropagation();
+              instanceRef.current?.next();
+            }}
+          />
+        </>
+      )}
 
-      {/* Right: Thumbnails */}
-      {/* Thumbnails */}
       <div ref={thumbnailRef} className="keen-slider thumbnail">
         {photos.map((photo, idx) => (
-          <div key={photo._id} className={`keen-slider__slide number-slide${idx}`} onClick={() => setFeatured(photo)} title={photo.caption}>
+          <div key={photo._id} className={`keen-slider__slide number-slide${idx}`} title={photo.caption}>
             <Image width={500} height={500} src={urlFor(photo.image).width(200).height(200).url()} alt={photo.caption || "Gallery Image"} />
           </div>
         ))}
