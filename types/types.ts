@@ -29,7 +29,6 @@ export type Article = {
   url: string;
 };
 
-
 export type Photo = {
   _id: string;
   _createdAt: string;
@@ -38,6 +37,24 @@ export type Photo = {
   _type: "photo";
   image: string;
   caption: string;
+};
+
+export type Game = {
+  _key: string;
+  gameDate: string;
+  homeOrAway: "home" | "away";
+  opponent: string;
+  time: string;
+};
+
+export type Schedule = {
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  _type: "schedule";
+  year: string;
+  games: Game[];
 };
 
 export type ArticlesArray = Article[];

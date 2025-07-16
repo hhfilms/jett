@@ -1,123 +1,62 @@
 "use client";
 import Image from "next/image";
+import {useSanityData} from "@/context/SanityDataContext";
+import {useState} from "react";
 
-export default function Schedule() {
-  const teams = [
-    {
-      opponent: "abilene",
-      image: "abilene",
-      date: "10/03/2025",
-      time: "7pm",
-      home: false,
-    },
-    {
-      opponent: "caprock",
-      image: "caprock",
-      date: "10/09/2025",
-      time: "7pm",
-      home: true,
-    },
-    {
-      opponent: "lubbock coronado",
-      image: "coronado",
-      date: "10/23/2025",
-      time: "7pm",
-      home: false,
-    },
-    {
-      opponent: "lubbock",
-      image: "lubbock",
-      date: "10/31/2025",
-      time: "7pm",
-      home: true,
-    },
-    {
-      opponent: "lubbock monterey",
-      image: "monterey",
-      date: "09/25/2025",
-      time: "7pm",
-      home: true,
-    },
-    {
-      opponent: "san angelo central",
-      image: "sanangelo",
-      date: "09/05/2025",
-      time: "7pm",
-      home: false,
-    },
-    {
-      opponent: "tascosa",
-      image: "tascosa",
-      date: "11/07/2025",
-      time: "7pm",
-      home: false,
-    },
-    {
-      opponent: "Palo Duro",
-      image: "paloduro",
-      date: "09/19/2025",
-      time: "7pm",
-      home: true,
-    },
-    {
-      opponent: "Odessa",
-      image: "odessa",
-      date: "08/29/2025",
-      time: "7pm",
-      home: true,
-    },
-    {
-      opponent: "midland",
-      image: "midland",
-      date: "09/12/2025",
-      time: "7pm",
-      home: false,
-    },
-  ];
+export default function Schedule({year, availableYears}: {year?: string; availableYears?: string[]}) {
+  const {schedule} = useSanityData();
+  // Use availableYears from prop if provided, else from schedule
+  const years = availableYears ?? schedule?.map((entry) => entry.year);
+  // If year prop is provided, use it; else use state (default to first year)
+  const [selectedYear, setSelectedYear] = useState(year ?? years?.[0] ?? "");
 
-  // Sort by date before rendering
-  const sortedTeams = [...teams].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  // If year prop is provided, always use it, otherwise use selectedYear state
+  const filteredYear = year ?? selectedYear;
+  const games = schedule?.find((entry) => entry.year === filteredYear)?.games || [];
+
+  const sortedGames = [...games].sort((a, b) => new Date(a.gameDate).getTime() - new Date(b.gameDate).getTime());
 
   return (
-    <main className="px-2 pb-6 lg:p-0 flex-grow flex flex-col justify-center font-mukta">
-      <div className="flex items-center justify-center mb-2 gap-2">
-        <span className="bg-secondary px-4 py-2">home</span> | <span className="bg-neutral-50 px-4 py-2 text-neutral-950">away</span>
-      </div>
-
-      {sortedTeams.length > 0 ? (
-        <div className="w-full max-w-4xl">
-          <div className="grid grid-cols-3 gap-4 lg:grid-cols-4">
-            {sortedTeams.map((team, index) => (
-              <div key={index} className={`min-h-40 flex flex-col items-center justify-center rounded-lg p-2 shadow-lg ${team.home ? "bg-secondary text-neutral-50" : "bg-neutral-100 text-neutral-950"}`}>
-                <div className="capitalize flex flex-col items-center justify-center">
-                  <div className="relative w-6 h-6 lg:w-8 lg:h-8 mb-2">
-                    <Image fill src={`/${team.image}.png`} alt={`${team.opponent} logo`} className="object-cover rounded-full" />
+    <>
+      <div className="w-full relative">
+        {/* change hidden to flex if i want to use a dropdown */}
+        {!year && (
+          <div className="hidden justify-end mb-6">
+            <select className="px-2 py-1 rounded bg-neutral-800 text-white" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+              {years?.map((yr) => (
+                <option key={yr} value={yr}>
+                  {yr}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        <div className="flex flex-wrap justify-between items-end gap-y-12 text-neutral-50 relative z-10">
+          {sortedGames.map((game, index) => {
+            const imageFile = game.opponent.toLowerCase().replace(/\s+/g, "");
+            const isHome = game.homeOrAway === "home";
+            return (
+              <div key={game._key || index} className="flex flex-col items-center min-h-[100px] w-1/5 sm:w-1/5 lg:flex-1 justify-between">
+                <div className="relative flex justify-center items-center w-full h-10">
+                  <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 z-0" />
+                  <div className={`relative w-14 h-14 lg:w-22 lg:h-22 z-10 rounded-full border-4 bg-neutral-100 ${isHome ? "border-primary text-neutral-50" : "border-neutral-100"}`}>
+                    <Image fill src={`/${imageFile}.png`} alt={`${game.opponent} logo`} className="object-cover rounded-full" />
                   </div>
-                  <div className="text-lg lg:font-semibold leading-none text-center">{team.opponent.charAt(0).toUpperCase() + team.opponent.slice(1)}</div>
                 </div>
-                <div className="text-sm">
-                  {team.date ? (
-                    <span>
-                      {new Date(team.date).toLocaleDateString(undefined, {
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
-                  ) : (
-                    <span className="italic">Date TBD</span>
-                  )}
-                  {team.time && <span className="ml-2">{team.time}</span>}
+                <div className="flex flex-col text-xs text-center capitalize">
+                  <span>{game.opponent}</span>
+                  <span>
+                    {new Date(game.gameDate).toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      ) : (
-        <div className="w-full max-w-4xl">
-          <h3 className="text-2xl uppercase lg:text-7xl font-bold text-neutral-950 text-center py-4">No Upcoming Games</h3>
-          <p className="text-center">Check back later for updates.</p>
-        </div>
-      )}
-    </main>
+      </div>
+    </>
   );
 }

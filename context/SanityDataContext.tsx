@@ -1,12 +1,13 @@
 "use client";
 
 import {createContext, useContext} from "react";
-import type {Stat, Article, Photo} from "@/types/types";
+import type {Stat, Article, Photo, Schedule} from "@/types/types";
 
 type SanityData = {
   stats: Stat[];
   articles: Article[];
   photos: Photo[];
+  schedule: Schedule[];
 };
 
 const SanityDataContext = createContext<SanityData | undefined>(undefined);
