@@ -43,7 +43,7 @@ function ThumbnailPlugin(mainRef: React.RefObject<KeenSliderInstance | null>) {
 }
 
 export default function PhotoGallery() {
-  const arrowClasses = "absolute block top-1/3 bg-gray-50 -translate-y-1/2 cursor-pointer";
+  const arrowClasses = "absolute block top-1/3 -translate-y-1/2 cursor-pointer";
   const {photos} = useSanityData();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -69,7 +69,7 @@ export default function PhotoGallery() {
   );
 
   return (
-    <div className="w-full max-w-5xl py-2 px-12 mb-22 relative">
+    <div className="w-full max-w-5xl py-2 mb-22 relative">
       <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-square md:aspect-video relative">
         {photos.map((photo, idx) => (
           <div key={photo._id} className={`keen-slider__slide number-slide${idx} relative w-full h-full`} title={photo.caption}>
@@ -80,7 +80,7 @@ export default function PhotoGallery() {
       {loaded && instanceRef.current && (
         <>
           <ChevronLeft
-            className={`${arrowClasses} left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
+            className={`${arrowClasses} left-0 lg:left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
             strokeWidth={2}
             size={36}
             onClick={(e) => {
@@ -89,7 +89,7 @@ export default function PhotoGallery() {
             }}
           />
           <ChevronRight
-            className={`${arrowClasses} right-12  ${currentSlide === instanceRef.current.track.details.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
+            className={`${arrowClasses} right-0 lg:right-12  ${currentSlide === instanceRef.current.track.details.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
             strokeWidth={2}
             size={36}
             onClick={(e) => {

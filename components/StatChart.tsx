@@ -107,23 +107,23 @@ export default function StatChart() {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 justify-center align-bottom">
-      <div className="p-4 h-[300px] flex justify-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-2 justify-center align-bottom">
+      <div className="px-4 h-[300px] flex justify-center">
         <Bar data={passingChartData} options={passingOptions as import("chart.js").ChartOptions<"bar">} />
       </div>
-      <div className="p-4 h-[300px] flex justify-between">
+      <div className="px-4 h-[300px] flex justify-between">
         <Bar data={tdsPerGameChartData} options={tdsOptions as import("chart.js").ChartOptions<"bar">} />
       </div>
-      <div className="p-4 h-[300px] flex justify-between">
+      <div className="px-4 h-[300px] flex justify-between">
         <Bar data={tdsVsIntsChartData} options={tdsIntsOptions as import("chart.js").ChartOptions<"bar">} />
       </div>
-      <div className="p-4 h-[300px] flex justify-between">
+      <div className="px-4 h-[300px] flex justify-between">
         <Line data={yardsPerGameChartData} options={yardsOptions as import("chart.js").ChartOptions<"line">} />
       </div>
-      <div className="p-4 h-[300px] flex justify-between">
+      <div className="px-4 h-[300px] flex justify-between">
         <Line data={percentageChartData} options={percentageOptions as import("chart.js").ChartOptions<"line">} />
       </div>
-      <div className="p-4 h-[300px] flex justify-between">
+      <div className="px-4 h-[300px] flex justify-between">
         <Line data={rushingChartData} options={rushingOptions as import("chart.js").ChartOptions<"line">} />
       </div>
     </div>
