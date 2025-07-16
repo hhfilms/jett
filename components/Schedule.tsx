@@ -9,7 +9,6 @@ export default function Schedule({year, availableYears}: {year?: string; availab
   const years = availableYears ?? schedule?.map((entry) => entry.year);
   // If year prop is provided, use it; else use state (default to first year)
   const [selectedYear, setSelectedYear] = useState(year ?? years?.[0] ?? "");
-
   // If year prop is provided, always use it, otherwise use selectedYear state
   const filteredYear = year ?? selectedYear;
   const games = schedule?.find((entry) => entry.year === filteredYear)?.games || [];
@@ -46,7 +45,7 @@ export default function Schedule({year, availableYears}: {year?: string; availab
                 <div className="flex flex-col text-xs text-center capitalize">
                   <span>{game.opponent}</span>
                   <span>
-                    {new Date(game.gameDate).toLocaleDateString(undefined, {
+                    {new Date(`${game.gameDate}T00:00:00`).toLocaleDateString(undefined, {
                       month: "short",
                       day: "numeric",
                     })}
