@@ -60,7 +60,7 @@ export default function StatBox({
 
   return (
     <div className={classes}>
-      <h4 className="uppercase mb-4">{year} Season Stats</h4>
+      <h4 className="uppercase mb-4">{year} Season Totals</h4>
       <div className="flex flex-row gap-2 md:gap-4 2xl:gap-6 text-center">
         <div>
           <h5 className="text-sm font-light">Yards</h5>
