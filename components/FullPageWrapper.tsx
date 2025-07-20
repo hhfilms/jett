@@ -12,6 +12,8 @@ import Contact from "./Contact";
 import Link from "next/link";
 import Schedule from "./Schedule";
 import {Dot} from "lucide-react";
+import {FaSquareXTwitter, FaSquareInstagram} from "react-icons/fa6";
+import Image from "next/image";
 
 export default function FullPageWrapper() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -122,11 +124,23 @@ export default function FullPageWrapper() {
         </div>
         <div className="bg-neutral-950 p-6 md:p-8 flex flex-col md:flex-row items-center justify-center md:gap-4">
           <h4 className="text-3xl md:text-4xl font-semibold uppercase">Follow me:</h4>
-          <h5 className="text-3xl md:text-4xl font-semibold uppercase text-primary">
-            <Link href="https://www.instagram.com/jett.lopezz/" target="_blank" className="hover:underline">
-              @jett.lopezz
-            </Link>
-          </h5>
+          <div className="font-semibold uppercase text-neutral-50 flex flex-row justify-center items-center gap-2">
+            <div>
+              <Link href="https://www.instagram.com/jett.lopezz/" target="_blank" className="hover:underline">
+                <FaSquareInstagram size="4em" />
+              </Link>
+            </div>
+            <div>
+              <Link href="https://x.com/JettLopez10/" target="_blank" className="hover:underline">
+                <FaSquareXTwitter size="4em" />
+              </Link>
+            </div>
+            <div className="relative w-14 h-14 bg-neutral-50 rounded-lg">
+              <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez" target="_blank" className="hover:underline">
+                <Image src="/hudl-logo-vector.svg" alt="Logo" fill className="" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
