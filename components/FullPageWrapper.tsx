@@ -68,6 +68,12 @@ export default function FullPageWrapper() {
         />
       </section>
 
+      {/* Schedule */}
+      <section data-section-name="Schedule" id="schedule" className=" bg-neutral-900 md:snap-start w-full py-8">
+        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-50 text-center pt-4 mb-12">2025 Schedule</h3>
+        <Schedule />
+      </section>
+
       {/* Stats */}
       <section data-section-name="Stats" id="stats" className="lg:h-screen bg-neutral-50 md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
@@ -93,10 +99,19 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Section 5 */}
-      {/* <section data-section-name="Videos" id="five" className="md:h-screen bg-neutral-50 md:snap-start">
+      <section data-section-name="Videos" id="five" className="md:h-screen bg-neutral-50 md:snap-start">
         <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">Videos</h3>
-        <main className="w-full">videos</main>
-      </section> */}
+        <div className="w-full aspect-video max-w-6xl mx-auto lg:px-4">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/P0K1yDDq-rg?autoplay=1&mute=1&controls=0"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen></iframe>
+        </div>
+      </section>
 
       {/* Contact */}
       <section data-section-name="Contact" id="contact" className=" bg-[#e0e5ec] md:snap-start w-full">
@@ -115,20 +130,14 @@ export default function FullPageWrapper() {
         </div>
       </section>
 
-      {/* Schedule */}
-      <section data-section-name="Schedule" id="schedule" className=" bg-neutral-900 md:snap-start w-full py-8">
-        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-50 text-center pt-4 mb-12">2025 Schedule</h3>
-        <Schedule />
-      </section>
-      {/* <section data-section-name="Schedule" id="schedule" className="lg:h-screen overflow-hidden md:snap-start flex flex-col lg:flex-row">
+      {/* 
         <div className="w-full lg:w-1/2 aspect-video lg:aspect-auto lg:h-full relative">
           <video src="/jettlopez.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
         </div>
         <div className="w-full lg:w-1/2 p-4 lg:p-12 flex flex-col justify-center text-neutral-50 ">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">2025 Schedule</h3>
           <Schedule />
-        </div>
-      </section> */}
+        </div>*/}
       <DotNavigation />
     </div>
   );
