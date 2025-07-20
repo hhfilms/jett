@@ -17,7 +17,7 @@ export default function Articles() {
     mode: "free",
     breakpoints: {
       "(min-width: 768px)": {
-        slides: {perView: 2, spacing: 15}, // Tailwind `md`
+        slides: {perView: 3, spacing: 15}, // Tailwind `md`
       },
       "(min-width: 1024px)": {
         slides: {perView: 4, spacing: 15}, // Tailwind `lg` and up
@@ -33,7 +33,7 @@ export default function Articles() {
   });
 
   return (
-    <main className="container lg:px-4 py-8">
+    <main className="w-full max-w-5xl py-2 mb-22 relative">
       <div ref={sliderRef} className="keen-slider relative">
         {articles.map((article, idx) => (
           <div key={article._id} className={`keen-slider__slide number-slide${idx} bg-white md:rounded overflow-hidden shadow-lg`}>

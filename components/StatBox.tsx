@@ -50,6 +50,14 @@ export default function StatBox({
     return () => controls.forEach((c) => c.stop());
   }, [yds, tds, rating, ints, comp]);
 
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null;
+
   return (
     <div className={classes}>
       <h4 className="uppercase mb-4">{year} Season Stats</h4>

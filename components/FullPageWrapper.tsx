@@ -77,7 +77,7 @@ export default function FullPageWrapper() {
       {/* Stats */}
       <section data-section-name="Stats" id="stats" className="lg:h-screen bg-neutral-50 md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
-          <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">2025 in Season Stats</h3>
+          <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Season Stats</h3>
           <StatChart />
         </div>
       </section>
@@ -91,20 +91,20 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Photos */}
-      <section data-section-name="Photos" id="photos" className=" bg-neutral-50 md:snap-start w-full">
+      <section data-section-name="Photos" id="photos" className="bg-neutral-50 md:snap-start w-full">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Photos</h3>
           <PhotoGallery />
         </div>
       </section>
 
-      {/* Section 5 */}
+      {/* Videos */}
       <section data-section-name="Videos" id="five" className="md:h-screen bg-neutral-50 md:snap-start">
         <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">Videos</h3>
         <div className="w-full aspect-video max-w-6xl mx-auto lg:px-4">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/P0K1yDDq-rg?autoplay=1&mute=1&controls=0"
+            src="https://www.youtube.com/embed/P0K1yDDq-rg?autoplay=1&mute=1&controls=1"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

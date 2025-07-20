@@ -4,16 +4,20 @@ export type Stat = {
   _updatedAt: string;
   _rev: string;
   _type: "stat";
-  gameDate: string; // ISO date like '2024-06-07'
-  opponent: string;
-  homeOrAway: "home" | "away";
-  passingYards: number;
-  rushingYards: number;
-  rushingTds: number;
-  touchdowns: number;
-  attempts: number;
-  completions: number;
-  interceptions: number;
+  season: string;
+  games: {
+    _key: string;
+    gameDate: string; // ISO date like '2024-06-07'
+    opponent: string;
+    homeOrAway: "home" | "away";
+    passingYards: number;
+    rushingYards: number;
+    rushingTds: number;
+    touchdowns: number;
+    attempts: number;
+    completions: number;
+    interceptions: number;
+  }[];
 };
 
 export type Article = {

@@ -1,86 +1,72 @@
 import {defineType, defineField} from "sanity";
 
 export const statType = defineType({
-  preview: {
-    select: {
-      opponent: "opponent",
-      gameDate: "gameDate",
-    },
-    prepare({opponent, gameDate}) {
-      return {
-        title: `AHS vs ${opponent}`,
-        subtitle: gameDate,
-      };
-    },
-  },
   name: "stat",
   title: "Stat",
   type: "document",
+  preview: {
+    select: {
+      season: "season",
+      games: "games",
+    },
+    prepare({season, games}) {
+      const firstGame = games?.[0];
+      return {
+        title: `${season} Season Stats`,
+        subtitle: firstGame ? `First: AHS vs ${firstGame.opponent} on ${firstGame.gameDate}` : "No stats available",
+      };
+    },
+  },
   fields: [
     defineField({
-      name: "gameDate",
-      title: "Game Date",
-      type: "date",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "opponent",
-      title: "Opponent",
+      name: "season",
+      title: "Season",
       type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "homeOrAway",
-      title: "Home or Away",
-      type: "string",
-      options: {
-        list: [
-          {title: "Home", value: "home"},
-          {title: "Away", value: "away"},
-        ],
-        layout: "radio", // optional: 'dropdown' or 'radio'
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "passingYards",
-      title: "Passing Yards",
-      type: "number",
-    }),
-    defineField({
-      name: "rushingYards",
-      title: "Rushing Yards",
-      type: "number",
-    }),
-
-    defineField({
-      name: "rushingTds",
-      title: "Rushing Touchdowns",
-      type: "number",
-    }),
-
-    defineField({
-      name: "touchdowns",
-      title: "Touchdowns",
-      type: "number",
-    }),
-
-    defineField({
-      name: "attempts",
-      title: "Attempts",
-      type: "number",
-    }),
-
-    defineField({
-      name: "completions",
-      title: "Completions",
-      type: "number",
-    }),
-
-    defineField({
-      name: "interceptions",
-      title: "Interceptions",
-      type: "number",
+      name: "games",
+      title: "Games",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "gameDate",
+              title: "Game Date",
+              type: "date",
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: "opponent",
+              title: "Opponent",
+              type: "string",
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: "homeOrAway",
+              title: "Home or Away",
+              type: "string",
+              options: {
+                list: [
+                  {title: "Home", value: "home"},
+                  {title: "Away", value: "away"},
+                ],
+                layout: "radio",
+              },
+              validation: (rule) => rule.required(),
+            },
+            {name: "passingYards", title: "Passing Yards", type: "number"},
+            {name: "rushingYards", title: "Rushing Yards", type: "number"},
+            {name: "rushingTds", title: "Rushing Touchdowns", type: "number"},
+            {name: "touchdowns", title: "Touchdowns", type: "number"},
+            {name: "attempts", title: "Attempts", type: "number"},
+            {name: "completions", title: "Completions", type: "number"},
+            {name: "interceptions", title: "Interceptions", type: "number"},
+          ],
+        },
+      ],
     }),
   ],
 });

@@ -1,6 +1,7 @@
 // utils/chartOptions.ts
 import {ChartOptions} from "chart.js";
-import {StatArray} from "@/types/types";
+import type { Stat } from "@/types/types";
+type Game = Stat["games"][number];
 
 export function formatDate(input: string): string {
   const [year, month, day] = input.split("-");
@@ -19,7 +20,7 @@ const sharedLayout = {
   },
 };
 
-const createOptions = (titleText: string, stats?: StatArray): ChartOptions<"bar" | "line" | "pie"> => ({
+const createOptions = (titleText: string, games?: Game[]): ChartOptions<"bar" | "line" | "pie"> => ({
   ...sharedLayout,
   plugins: {
     title: {
@@ -29,12 +30,15 @@ const createOptions = (titleText: string, stats?: StatArray): ChartOptions<"bar"
       padding: {top: 10, bottom: 10},
     },
     legend: sharedLayout.legend,
-    tooltip: stats
+    tooltip: games
       ? {
           callbacks: {
             title: (items) => {
               const index = items[0].dataIndex;
-              return `vs ${stats[index].opponent} ${formatDate(stats[index].gameDate)}`;
+              const game = games?.[index];
+              const opponent = game?.opponent || "Unknown";
+              const gameDate = game?.gameDate || "0000-00-00";
+              return `vs ${opponent} ${formatDate(gameDate)}`;
             },
           },
         }
@@ -42,17 +46,17 @@ const createOptions = (titleText: string, stats?: StatArray): ChartOptions<"bar"
   },
 });
 
-export const getChartOptions = (stats: StatArray) => ({
-  passing: createOptions("Completions vs Attempts", stats),
-  yards: createOptions("Passing YPG", stats),
-  percentage: createOptions("Completion Percentage", stats),
-  rushing: createOptions("Rushing YPG", stats),
+export const getChartOptions = (games: Game[]) => ({
+  passing: createOptions("Completions vs Attempts", games),
+  yards: createOptions("Passing YPG", games),
+  percentage: createOptions("Completion Percentage", games),
+  rushing: createOptions("Rushing YPG", games),
   tds: {
-    ...createOptions("Total TDs Per Game", stats),
+    ...createOptions("Total TDs Per Game", games),
     scales: {x: {stacked: true}, y: {stacked: true, beginAtZero: true}},
   },
   tdsInts: {
-    ...createOptions("TDs vs INTs Per Game", stats),
+    ...createOptions("TDs vs INTs Per Game", games),
   },
   pie: createOptions("TDs vs INTs Per Game"),
 });
