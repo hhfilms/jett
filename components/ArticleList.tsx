@@ -9,7 +9,7 @@ import {ChevronLeft, ChevronRight} from "lucide-react";
 
 export default function Articles() {
   const arrowClasses = "absolute block top-1/2 -translate-y-1/2 cursor-pointer";
-  const {articles} = useSanityData();
+  const {data} = useSanityData();
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
@@ -35,7 +35,7 @@ export default function Articles() {
   return (
     <main className="w-full max-w-5xl py-2 mb-22 relative">
       <div ref={sliderRef} className="keen-slider relative">
-        {articles.map((article, idx) => (
+        {data.articles.map((article, idx) => (
           <div key={article._id} className={`keen-slider__slide number-slide${idx} bg-white md:rounded overflow-hidden shadow-lg`}>
             <div className="relative w-full h-52">
               <Image src={article.imageUrl} alt={article.title} fill className="object-cover" unoptimized />

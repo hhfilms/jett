@@ -4,14 +4,14 @@ import {useSanityData} from "@/context/SanityDataContext";
 import {useState} from "react";
 
 export default function Schedule({year, availableYears}: {year?: string; availableYears?: string[]}) {
-  const {schedule} = useSanityData();
+  const {data} = useSanityData();
   // Use availableYears from prop if provided, else from schedule
-  const years = availableYears ?? schedule?.map((entry) => entry.year);
+  const years = availableYears ?? data.schedule?.map((entry) => entry.year);
   // If year prop is provided, use it; else use state (default to first year)
   const [selectedYear, setSelectedYear] = useState(year ?? years?.[0] ?? "");
   // If year prop is provided, always use it, otherwise use selectedYear state
   const filteredYear = year ?? selectedYear;
-  const games = schedule?.find((entry) => entry.year === filteredYear)?.games || [];
+  const games = data.schedule?.find((entry) => entry.year === filteredYear)?.games || [];
 
   const sortedGames = [...games].sort((a, b) => new Date(a.gameDate).getTime() - new Date(b.gameDate).getTime());
 

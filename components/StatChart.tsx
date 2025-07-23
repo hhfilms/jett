@@ -6,16 +6,16 @@ import {useSanityData} from "@/context/SanityDataContext";
 import {useState} from "react";
 
 export default function StatChart() {
-  const {stats} = useSanityData();
+  const {data} = useSanityData();
 
   // Extract unique seasons
-  const seasons = Array.from(new Set(stats.map((stat) => stat.season)));
+  const seasons = Array.from(new Set(data.stats.map((stat) => stat.season)));
 
   // Default to the most recent season
   const [selectedSeason, setSelectedSeason] = useState(seasons[seasons.length - 1]);
 
   // Find the selected season's stats and use its games array
-  const seasonStats = stats.find((stat) => stat.season === selectedSeason);
+  const seasonStats = data.stats.find((stat) => stat.season === selectedSeason);
   const filteredStats = seasonStats?.games || [];
 
   const {passing: passingOptions, yards: yardsOptions, percentage: percentageOptions, rushing: rushingOptions, tds: tdsOptions, tdsInts: tdsIntsOptions} = getChartOptions(filteredStats);

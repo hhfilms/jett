@@ -2,12 +2,16 @@
 
 import {createContext, useContext} from "react";
 import type {Stat, Article, Photo, Schedule} from "@/types/types";
+import {useState} from "react";
 
 type SanityData = {
-  stats: Stat[];
-  articles: Article[];
-  photos: Photo[];
-  schedule: Schedule[];
+  data: {
+    stats: Stat[];
+    articles: Article[];
+    photos: Photo[];
+    schedule: Schedule[];
+  };
+  setData: React.Dispatch<React.SetStateAction<SanityData["data"]>>;
 };
 
 const SanityDataContext = createContext<SanityData | undefined>(undefined);
@@ -18,6 +22,8 @@ export const useSanityData = () => {
   return context;
 };
 
-export const SanityDataProvider = ({children, value}: {children: React.ReactNode; value: SanityData}) => {
-  return <SanityDataContext.Provider value={value}>{children}</SanityDataContext.Provider>;
+export const SanityDataProvider = ({children, initialData}: {children: React.ReactNode; initialData: SanityData["data"]}) => {
+  const [data, setData] = useState(initialData);
+
+  return <SanityDataContext.Provider value={{data, setData}}>{children}</SanityDataContext.Provider>;
 };
