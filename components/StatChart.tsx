@@ -113,7 +113,7 @@ export default function StatChart() {
   };
 
   return (
-    <div>
+    <main className="w-full px-6 relative">
       <div className="flex space-x-2 justify-center mb-6">
         {seasons.map((season) => (
           <button
@@ -144,6 +144,6 @@ export default function StatChart() {
           <Line data={rushingChartData} options={rushingOptions as import("chart.js").ChartOptions<"line">} />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

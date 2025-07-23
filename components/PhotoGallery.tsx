@@ -73,7 +73,14 @@ export default function PhotoGallery() {
       <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-square md:aspect-video relative">
         {data.photos.map((photo, idx) => (
           <div key={photo._id} className={`keen-slider__slide number-slide${idx} relative w-full h-full`} title={photo.caption}>
-            <Image fill quality={100} className="object-contain object-center" src={urlFor(photo.image).width(1000).height(1000).url()} alt={photo.caption || "Gallery Image"} />
+            <Image
+              fill
+              sizes="(min-width: 1024px) 800px, (min-width: 768px) 600px, 100vw"
+              quality={100}
+              className="object-contain object-center"
+              src={urlFor(photo.image).width(1000).height(1000).url()}
+              alt={photo.caption || "Gallery Image"}
+            />
           </div>
         ))}
       </div>

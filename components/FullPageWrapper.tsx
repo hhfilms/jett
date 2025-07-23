@@ -135,9 +135,9 @@ export default function FullPageWrapper() {
                 <FaSquareXTwitter size="4em" />
               </Link>
             </div>
-            <div className="relative w-14 h-14 bg-neutral-50 rounded-lg">
-              <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez" target="_blank" className="hover:underline">
-                <Image src="/hudl-logo-vector.svg" alt="Logo" fill className="" />
+            <div className="bg-neutral-50 rounded-lg">
+              <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez" target="_blank" className="hover:underline relative w-14 h-14 block">
+                <Image src="/hudl-logo-vector.svg" alt="Hudl Logo" fill sizes="(min-width: 1024px) 88px, (min-width: 640px) 56px, 44px" />
               </Link>
             </div>
           </div>

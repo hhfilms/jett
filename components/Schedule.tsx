@@ -39,7 +39,7 @@ export default function Schedule({year, availableYears}: {year?: string; availab
                 <div className="relative flex justify-center items-center w-full h-10">
                   <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 z-0" />
                   <div className={`relative w-14 h-14 lg:w-22 lg:h-22 z-10 rounded-full border-4 bg-neutral-100 ${isHome ? "border-primary text-neutral-50" : "border-neutral-100"}`}>
-                    <Image fill src={`/${imageFile}.png`} alt={`${game.opponent} logo`} className="object-cover rounded-full" />
+                    <Image fill sizes="(min-width: 1024px) 88px, (min-width: 640px) 56px, 44px" src={`/${imageFile}.png`} alt={`${game.opponent} logo`} className="object-cover rounded-full" />
                   </div>
                 </div>
                 <div className="flex flex-col text-xs text-center capitalize">
