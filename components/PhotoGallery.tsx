@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-
 import {urlFor} from "@/sanity/lib/image";
 import {useSanityData} from "@/context/SanityDataContext";
 import {useState} from "react";

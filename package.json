@@ -13,7 +13,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.97.1",
     "@types/tailwindcss": "^3.0.11",
-    "axios": "^1.10.0",
+    "axios": "^1.11.0",
     "chart.js": "^4.5.0",
     "cheerio": "^1.1.0",
     "keen-slider": "^6.8.6",

@@ -36,14 +36,14 @@ export default function SanityLiveUpdater() {
     });
 
     const subSchedule = client.listen(SCHEDULE_QUERY).subscribe(() => {
-      client.fetch(ARTICLES_QUERY).then((newArticles) => {
-        setData((prev) => ({...prev, articles: newArticles}));
+      client.fetch(SCHEDULE_QUERY).then((newSchedule) => {
+        setData((prev) => ({...prev, schedule: newSchedule}));
       });
     });
 
     const subPhotos = client.listen(PHOTOS_QUERY).subscribe(() => {
-      client.fetch(ARTICLES_QUERY).then((newArticles) => {
-        setData((prev) => ({...prev, articles: newArticles}));
+      client.fetch(PHOTOS_QUERY).then((newPhotos) => {
+        setData((prev) => ({...prev, photos: newPhotos}));
       });
     });
 
@@ -54,10 +54,9 @@ export default function SanityLiveUpdater() {
       subArticles.unsubscribe();
       subSchedule.unsubscribe();
       subPhotos.unsubscribe();
-      subArticles.unsubscribe();
       // etc.
     };
-  }, []);
+  }, [setData]);
 
   return null; // <-- You need this!
 }

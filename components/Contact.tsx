@@ -59,7 +59,7 @@ export default function ContactForm() {
             <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} className="p-3 rounded-xl border-none bg-[#e0e5ec] shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]" />
             <textarea name="message" placeholder="Message" required rows={8} value={formData.message} onChange={handleChange} className="p-3 rounded-xl border-none bg-[#e0e5ec]  resize-none shadow-[10px_10px_30px_#c2c8d0,-10px_-10px_30px_#ffffff]"  />
           </div>
-          <button type="submit" className="w-full mt-3 p-3 font-semibold uppercase rounded-xl bg-[#e0e5ec] shadow-[2px_2px_10px_#c2c8d0,-6px_-6px_10px_#ffffff] hover:bg-[#d6dce4] flex items-center justify-center gap-2 text-neutral-500">
+          <button type="submit" className="w-full cursor-pointer mt-3 p-3 font-semibold uppercase rounded-xl bg-[#e0e5ec] shadow-[2px_2px_10px_#c2c8d0,-6px_-6px_10px_#ffffff] hover:bg-[#d6dce4] flex items-center justify-center gap-2 text-neutral-500">
             {isSending ? (
               <Loader className="animate-spin" />
             ) : (

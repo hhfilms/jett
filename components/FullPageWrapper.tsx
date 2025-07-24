@@ -14,6 +14,7 @@ import Schedule from "./Schedule";
 import {Dot} from "lucide-react";
 import {FaSquareXTwitter, FaSquareInstagram} from "react-icons/fa6";
 import Image from "next/image";
+import VideoGallery from "./VideoGallery";
 
 export default function FullPageWrapper() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -99,19 +100,11 @@ export default function FullPageWrapper() {
           <PhotoGallery />
         </div>
       </section>
-
       {/* Videos */}
       <section data-section-name="Videos" id="five" className="md:h-screen bg-neutral-50 md:snap-start">
         <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">Videos</h3>
         <div className="w-full aspect-video max-w-6xl mx-auto lg:px-4">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/P0K1yDDq-rg?autoplay=1&mute=1&controls=1"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen></iframe>
+          <VideoGallery />
         </div>
       </section>
 
@@ -126,17 +119,17 @@ export default function FullPageWrapper() {
           <h4 className="text-3xl md:text-4xl font-semibold uppercase">Follow me:</h4>
           <div className="font-semibold uppercase text-neutral-50 flex flex-row justify-center items-center gap-2">
             <div>
-              <Link href="https://www.instagram.com/jett.lopezz/" target="_blank" className="hover:underline">
-                <FaSquareInstagram size="4em" />
+              <Link href="https://www.instagram.com/jett.lopezz/" target="_blank" className="cursor-pointer">
+                <FaSquareInstagram size="4em" className="cursor-pointer" />
               </Link>
             </div>
-            <div>
-              <Link href="https://x.com/JettLopez10/" target="_blank" className="hover:underline">
+            <div className="cursor-pointer">
+              <Link href="https://x.com/JettLopez10/" target="_blank" className="cursor-pointer">
                 <FaSquareXTwitter size="4em" />
               </Link>
             </div>
-            <div className="bg-neutral-50 rounded-lg">
-              <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez" target="_blank" className="hover:underline relative w-14 h-14 block">
+            <div className="bg-neutral-50 hover:bg-neutral-100 rounded-lg cursor-pointer">
+              <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez" target="_blank" className="relative w-14 h-14 block cursor-pointer">
                 <Image src="/hudl-logo-vector.svg" alt="Hudl Logo" fill sizes="(min-width: 1024px) 88px, (min-width: 640px) 56px, 44px" />
               </Link>
             </div>
