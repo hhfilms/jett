@@ -22,10 +22,10 @@ const PHOTOS_QUERY = `*[_type == "photo"] | order(featured desc, _createdAt desc
 const options = {next: {revalidate: 30}};
 
 export const metadata = {
-  title: "Jett Lopez – Quarterback Stats, Schedule, and Highlights",
-  description: "Follow Jett Lopez's high school football journey: game stats, schedule, photos, and articles updated weekly.",
+  title: "Jett Lopez | Quarterback Stats, Schedule, & Highlights",
+  description: "Follow Jett Lopez's high school football journey: game stats, schedule, photos, & articles.",
   openGraph: {
-    title: "Jett Lopez – High School Quarterback",
+    title: "Jett Lopez | High School Quarterback",
     description: "Get up-to-date stats, highlights, and game info.",
     url: "https://jettlopez.com",
     images: [
@@ -39,7 +39,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jett Lopez – High School QB",
+    title: "Jett Lopez | High School QB",
     description: "Track the journey of standout QB Jett Lopez.",
     images: ["https://jettlopez.com/og_image.png"],
   },

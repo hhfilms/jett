@@ -58,8 +58,26 @@ export const scheduleType = defineType({
               validation: (rule) => rule.required(),
             },
             {
+              name: "result",
+              title: "Result",
+              type: "string",
+              options: {
+                list: [
+                  {title: "Win", value: "win"},
+                  {title: "Loss", value: "loss"},
+                  {title: "Tie", value: "tie"},
+                ],
+                layout: "radio",
+              },
+            },
+            {
               name: "time",
               title: "Time",
+              type: "string",
+            },
+            {
+              name: "score",
+              title: "Score",
               type: "string",
             },
           ],

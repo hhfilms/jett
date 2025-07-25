@@ -49,6 +49,8 @@ export type Game = {
   homeOrAway: "home" | "away";
   opponent: string;
   time: string;
+  result: "win" | "loss" | "tie";
+  score: string;
 };
 
 export type Schedule = {

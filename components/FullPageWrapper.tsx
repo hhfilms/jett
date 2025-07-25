@@ -31,9 +31,9 @@ export default function FullPageWrapper() {
         <Header classes="px-4" />
         <div className="absolute w-1/2 top-1/2 -translate-y-1/2 md:w-2/3 md:-left-36 xl:w-1/3 xl:left-28 p-4  text-right">
           <h1 className="text-6xl font-bold">Jett Lopez</h1>
-          <h3 className="text-2xl font-light text-primary">
+          <h2 className="text-2xl font-light text-primary">
             <div className="flex flex-col sm:flex-row justify-end sm:items-center gap-2">
-              <h2 className="text-right">Amarillo High</h2>
+              <span className="text-right">Amarillo High</span>
 
               <div className="flex gap-2 justify-end">
                 <span className="flex text-right items-center">
@@ -44,7 +44,7 @@ export default function FullPageWrapper() {
                 </span>
               </div>
             </div>
-          </h3>
+          </h2>
           <ul className="text-lg md:list-disc md:flex min-w-0 flex-basis-0 flex-shrink flex-grow flex-nowrap justify-end gap-8 mb-4">
             <li className="list-none">6&apos; 1&quot;, 205 lbs</li>
             <li>class of 2026</li>
@@ -59,6 +59,7 @@ export default function FullPageWrapper() {
             comp={65.7}
             classes="hidden xl:flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-md text-neutral-950 justify-end"
           />
+          <h4 className="text-right lg:text-center mt-2">AHS single season record holder for Yards & TDs</h4>
         </div>
         <StatBox
           year={2024}
@@ -67,13 +68,12 @@ export default function FullPageWrapper() {
           rating={130.0}
           ints={4}
           comp={65.7}
-          classes=" absolute bottom-0 left-0 w-full flex xl:hidden flex-col items-center justify-center p-4 bg-white shadow-md text-neutral-950"
+          classes="absolute bottom-0 left-0 w-full flex xl:hidden flex-col items-center justify-center p-4 bg-white shadow-md text-neutral-950"
         />
       </section>
 
       {/* Schedule */}
       <section data-section-name="Schedule" id="schedule" className=" bg-neutral-900 md:snap-start w-full py-8">
-        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-50 text-center pt-4 mb-12">2025 Schedule</h3>
         <Schedule />
       </section>
 

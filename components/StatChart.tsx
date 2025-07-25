@@ -82,8 +82,8 @@ export default function StatChart() {
       {
         label: "Passing Yards",
         data: filteredStats.map((game) => game.passingYards),
-        borderColor: "rgb(179, 137, 63)",
-        backgroundColor: "rgba(179, 137, 63, 0.5)",
+        borderColor: "rgb(179, 137, 63, .6)",
+        backgroundColor: "rgba(63, 105, 179)",
       },
     ],
   };
@@ -94,8 +94,8 @@ export default function StatChart() {
       {
         label: "Completion Percentage",
         data: completionPercentage,
-        borderColor: "rgb(179, 137, 63)",
-        backgroundColor: "rgba(179, 137, 63, 0.5)",
+        borderColor: "rgb(179, 137, 63, .6)",
+        backgroundColor: "rgba(63, 105, 179)",
       },
     ],
   };
@@ -106,8 +106,8 @@ export default function StatChart() {
       {
         label: "Rushing Yards",
         data: filteredStats.map((game) => game.rushingYards),
-        borderColor: "rgb(179, 137, 63)",
-        backgroundColor: "rgba(179, 137, 63, 0.5)",
+        borderColor: "rgb(179, 137, 63, .6)",
+        backgroundColor: "rgba(63, 105, 179)",
       },
     ],
   };
@@ -135,10 +135,10 @@ export default function StatChart() {
           <Bar data={tdsVsIntsChartData} options={tdsIntsOptions as import("chart.js").ChartOptions<"bar">} />
         </div>
         <div className="px-4 h-[300px] flex justify-between">
-          <Line data={yardsPerGameChartData} options={yardsOptions as import("chart.js").ChartOptions<"line">} />
+          <Line data={percentageChartData} options={percentageOptions as import("chart.js").ChartOptions<"line">} />
         </div>
         <div className="px-4 h-[300px] flex justify-between">
-          <Line data={percentageChartData} options={percentageOptions as import("chart.js").ChartOptions<"line">} />
+          <Line data={yardsPerGameChartData} options={yardsOptions as import("chart.js").ChartOptions<"line">} />
         </div>
         <div className="px-4 h-[300px] flex justify-between">
           <Line data={rushingChartData} options={rushingOptions as import("chart.js").ChartOptions<"line">} />
