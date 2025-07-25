@@ -15,9 +15,11 @@ import {Dot} from "lucide-react";
 import {FaSquareXTwitter, FaSquareInstagram} from "react-icons/fa6";
 import Image from "next/image";
 import VideoGallery from "./VideoGallery";
+import StatTable from "./StatTable";
 
 export default function FullPageWrapper() {
   const [hasMounted, setHasMounted] = useState(false);
+  const [viewMode, setViewMode] = useState<"chart" | "table">("chart");
 
   useEffect(() => {
     setHasMounted(true);
@@ -73,7 +75,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Schedule */}
-      <section data-section-name="Schedule" id="schedule" className=" bg-neutral-900 md:snap-start w-full py-8">
+      <section data-section-name="Schedule" id="schedule" className="bg-neutral-900 md:snap-start w-full py-8">
         <Schedule />
       </section>
 
@@ -81,7 +83,15 @@ export default function FullPageWrapper() {
       <section data-section-name="Stats" id="stats" className="lg:h-screen bg-neutral-50 md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Season Stats</h3>
-          <StatChart />
+          <div className="flex gap-0 mb-8">
+            <button onClick={() => setViewMode("chart")} className={`px-2 text-sm py-1 rounded-tl-sm rounded-bl-sm  ${viewMode === "chart" ? "bg-primary text-white" : "bg-neutral-200 text-neutral-400"}`}>
+              Chart
+            </button>
+            <button onClick={() => setViewMode("table")} className={`px-2 text-sm py-1 rounded-tr-sm rounded-br-sm ${viewMode === "table" ? "bg-primary text-white" : "bg-neutral-200 text-neutral-400"}`}>
+              Table
+            </button>
+          </div>
+          {viewMode === "chart" ? <StatChart /> : <StatTable />}
         </div>
       </section>
 
