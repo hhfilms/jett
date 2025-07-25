@@ -36,7 +36,7 @@ export default function Articles() {
     <main className="w-full max-w-6xl py-2 mb-22 relative">
       <div ref={sliderRef} className="keen-slider relative">
         {data.articles.map((article, idx) => (
-          <div key={article._id} className={`keen-slider__slide number-slide${idx} bg-white md:rounded overflow-hidden shadow-lg`}>
+          <article key={article._id} className={`keen-slider__slide number-slide${idx} bg-white md:rounded overflow-hidden shadow-lg`}>
             <div className="relative w-full h-52">
               <Image src={article.imageUrl} alt={article.title} fill className="object-cover" unoptimized />
               <span className="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded">{new Date(article.publishedAt).toLocaleDateString()}</span>
@@ -47,7 +47,7 @@ export default function Articles() {
                 <h2 className="text-lg font-bold text-gray-900 hover:underline">{article.title}</h2>
               </Link>
             </div>
-          </div>
+          </article>
         ))}
         {loaded && instanceRef.current && instanceRef.current.track?.details && (
           <>

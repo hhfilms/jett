@@ -30,10 +30,10 @@ export default function FullPageWrapper() {
       <section data-section-name="Bio" id="bio" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950 md:snap-start relative">
         <Header classes="px-4" />
         <div className="absolute w-1/2 top-1/2 -translate-y-1/2 md:w-2/3 md:-left-36 xl:w-1/3 xl:left-28 p-4  text-right">
-          <h2 className="text-6xl font-bold">Jett Lopez</h2>
+          <h1 className="text-6xl font-bold">Jett Lopez</h1>
           <h3 className="text-2xl font-light text-primary">
             <div className="flex flex-col sm:flex-row justify-end sm:items-center gap-2">
-              <span className="text-right">Amarillo High</span>
+              <h2 className="text-right">Amarillo High</h2>
 
               <div className="flex gap-2 justify-end">
                 <span className="flex text-right items-center">

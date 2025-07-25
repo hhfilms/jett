@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://jettlopez.com
+
+# Sitemaps
+Sitemap: https://jettlopez.com/sitemap.xml
