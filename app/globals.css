@@ -21,6 +21,18 @@
   --font-anton: "Anton", sans-serif;
   --font-oswald: "Oswald", sans-serif;
   --font-mukta: "Mukta", sans-serif;
+
+  --animate-slideDown: slideDown 1s ease-in-out;
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,3 +68,7 @@ h6 {
 .thumbnail .keen-slider__slide.active {
   border: 3px solid var(--color-primary);
 }
+
+/* .animate-slide-down {
+  animation: slideDown 0.4s ease-out forwards;
+} */

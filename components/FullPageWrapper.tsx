@@ -84,14 +84,24 @@ export default function FullPageWrapper() {
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Season Stats</h3>
           <div className="flex gap-0 mb-8">
-            <button onClick={() => setViewMode("chart")} className={`px-2 text-sm py-1 rounded-tl-sm rounded-bl-sm  ${viewMode === "chart" ? "bg-primary text-white" : "bg-neutral-200 text-neutral-400"}`}>
+            <button
+              onClick={() => setViewMode("chart")}
+              className={`px-2 text-sm py-1 rounded-tl-sm rounded-bl-sm  ${viewMode === "chart" ? "bg-primary text-white" : "bg-neutral-200 text-neutral-400"}`}>
               Chart
             </button>
-            <button onClick={() => setViewMode("table")} className={`px-2 text-sm py-1 rounded-tr-sm rounded-br-sm ${viewMode === "table" ? "bg-primary text-white" : "bg-neutral-200 text-neutral-400"}`}>
+            <button
+              onClick={() => setViewMode("table")}
+              className={`px-2 text-sm py-1 rounded-tr-sm rounded-br-sm ${viewMode === "table" ? "bg-primary text-white" : "bg-neutral-200 text-neutral-400"}`}>
               Table
             </button>
           </div>
-          {viewMode === "chart" ? <StatChart /> : <StatTable />}
+          {viewMode === "chart" ? (
+            <StatChart />
+          ) : (
+            <div key="table" className="animate-slideDown w-full">
+              <StatTable />
+            </div>
+          )}
         </div>
       </section>
 
