@@ -12,7 +12,7 @@ export default function StatChart() {
   const seasons = Array.from(new Set(data.stats.map((stat) => stat.season)));
 
   // Default to the most recent season
-  const [selectedSeason, setSelectedSeason] = useState(seasons[seasons.length - 1]);
+  const [selectedSeason, setSelectedSeason] = useState(seasons[0]);
 
   // Find the selected season's stats and use its games array
   const seasonStats = data.stats.find((stat) => stat.season === selectedSeason);
