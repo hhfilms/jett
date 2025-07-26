@@ -1,7 +1,7 @@
 "use client";
 
 import {createContext, useContext} from "react";
-import type {Stat, Article, Photo, Schedule} from "@/types/types";
+import type {Stat, Article, Photo, Schedule, Video, Bio} from "@/types/types";
 import {useState} from "react";
 
 type SanityData = {
@@ -10,6 +10,8 @@ type SanityData = {
     articles: Article[];
     photos: Photo[];
     schedule: Schedule[];
+    videos: Video[];
+    bio: Bio[];
   };
   setData: React.Dispatch<React.SetStateAction<SanityData["data"]>>;
 };

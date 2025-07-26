@@ -1,23 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {motion, animate} from "framer-motion";
+import {computeSeasonTotals} from "@/utils/statTotals";
+import {useSanityData} from "@/context/SanityDataContext";
 
-export default function StatBox({
-  year,
-  yds,
-  tds,
-  rating,
-  ints,
-  comp,
-  classes,
-}: {
-  year: number;
-  yds: number;
-  tds: string | number;
-  rating?: string | number;
-  ints: number;
-  comp?: string | number;
-  classes?: string;
-}) {
+export default function StatBox({year, classes}: {year: number; classes?: string}) {
+  const {data} = useSanityData();
+  const seasonStats = data.stats.find((stat) => stat.season === year.toString());
+  const filteredStats = seasonStats?.games || [];
+  // OTHER DATA: totalCompletions, totalAttempts, totalRushYards, totalRushTds
+  const {totalYards, totalTDs, totalINTs, totalCompPct, totalRating} = computeSeasonTotals(filteredStats);
   const [ydsAnimated, setYdsAnimated] = useState(0);
   const [tdsAnimated, setTdsAnimated] = useState(0);
   const [ratingAnimated, setRatingAnimated] = useState(0);
@@ -26,29 +17,29 @@ export default function StatBox({
 
   useEffect(() => {
     const controls = [
-      animate(0, yds, {
+      animate(0, totalYards, {
         duration: 2.5,
         onUpdate: (v) => setYdsAnimated(Math.round(v)),
       }),
-      animate(0, Number(tds), {
+      animate(0, Number(totalTDs), {
         duration: 2.5,
         onUpdate: (v) => setTdsAnimated(Math.round(v)),
       }),
-      animate(0, Number(rating), {
+      animate(0, Number(totalRating), {
         duration: 2.5,
         onUpdate: (v) => setRatingAnimated(Math.round(v)),
       }),
-      animate(0, ints, {
+      animate(0, totalINTs, {
         duration: 2.5,
         onUpdate: (v) => setIntsAnimated(Math.round(v)),
       }),
-      animate(0, Number(comp), {
+      animate(0, Number(totalCompPct), {
         duration: 2.5,
         onUpdate: (v) => setCompAnimated(Math.round(v)),
       }),
     ];
     return () => controls.forEach((c) => c.stop());
-  }, [yds, tds, rating, ints, comp]);
+  }, [totalYards, totalTDs, totalRating, totalINTs, totalCompPct]);
 
   const [hasMounted, setHasMounted] = useState(false);
 

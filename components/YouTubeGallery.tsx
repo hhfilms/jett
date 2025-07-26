@@ -87,7 +87,7 @@ export default function VideoGallery() {
           <div>no vids</div>
         )}
       </div>
-      {loaded && instanceRef.current && (
+      {loaded && instanceRef.current && videos.length > 1 && (
         <>
           <ChevronLeft
             className={`${arrowClasses} left-0 lg:left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}

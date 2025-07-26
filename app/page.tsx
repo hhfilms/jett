@@ -1,11 +1,13 @@
 import Head from "next/head";
 import {client} from "@/sanity/lib/client";
-import type {Stat, Article, Photo, Schedule} from "@/types/types";
+import type {Stat, Article, Photo, Schedule, Video, Bio} from "@/types/types";
 import FullPageWrapper from "@/components/FullPageWrapper";
 import {SanityDataProvider} from "@/context/SanityDataContext";
 import SanityLiveUpdater from "@/components/SanityLiveUpdater";
 
 const STATS_QUERY = `*[_type == "stat"] | order(gameDate asc)[0...12]{...}`;
+const BIO_QUERY = `*[_type == "bio"] | order(gameDate asc)[0...12]{...}`;
+const VIDEOS_QUERY = `*[_type == "video"] | order(gameDate asc)[0...12]{...}`;
 const ARTICLES_QUERY = `*[_type == "article"] | order(publishedAt desc)[0...12]{...}`;
 const SCHEDULE_QUERY = `*[_type == "schedule"] | order(publishedAt asc)[0...12]{...}`;
 const PHOTOS_QUERY = `*[_type == "photo"] | order(featured desc, _createdAt desc) {
@@ -50,6 +52,8 @@ export default async function Home() {
   const articles = await client.fetch<Article[]>(ARTICLES_QUERY, {}, options);
   const photos = await client.fetch<Photo[]>(PHOTOS_QUERY, {}, options);
   const schedule = await client.fetch<Schedule[]>(SCHEDULE_QUERY, {}, options);
+  const videos = await client.fetch<Video[]>(VIDEOS_QUERY, {}, options);
+  const bio = await client.fetch<Bio[]>(BIO_QUERY, {}, options);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -69,7 +73,7 @@ export default async function Home() {
       <Head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
       </Head>
-      <SanityDataProvider initialData={{stats, articles, photos, schedule}}>
+      <SanityDataProvider initialData={{bio, stats, articles, photos, schedule, videos}}>
         <SanityLiveUpdater />
         <FullPageWrapper />
       </SanityDataProvider>
