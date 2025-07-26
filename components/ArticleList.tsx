@@ -13,8 +13,8 @@ export default function Articles() {
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
-    loop: true,
-    mode: "free",
+    loop: false,
+    mode: "snap",
     breakpoints: {
       "(min-width: 768px)": {
         slides: {perView: 3, spacing: 15}, // Tailwind `md`

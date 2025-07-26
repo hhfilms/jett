@@ -39,53 +39,51 @@ export default function Hudl() {
   }
 
   return (
-    <>
-      <div className="w-full relative aspect-video max-w-6xl mx-auto lg:px-4 flex flex-col items-center justify-center">
-        <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-square md:aspect-video relative">
-          {data.videos ? (
-            data.videos.map((video, idx) => (
-              <div key={video._id} className="flex flex-col">
-                <div className={`keen-slider__slide number-slide${idx} aspect-video relative w-full h-full`}>
-                  <iframe className="w-full h-full" src={getEmbedUrl(video.videoUrl)} title={video.caption} frameBorder="0" allowFullScreen></iframe>
-                </div>
-                <div className=" text-center text-dark">
-                  <h2 className="md:text-xl sm:text-lg text-center">{video.caption}</h2>
-                </div>
+    <main className="w-full max-w-6xl py-2 mb-22 relative mx-auto">
+      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-video square md:aspect-video relative">
+        {data.videos ? (
+          data.videos.map((video, idx) => (
+            <div key={video._id} className="flex flex-col">
+              <div className={`keen-slider__slide number-slide${idx} aspect-video relative w-full h-full`}>
+                <iframe className="w-full h-full" src={getEmbedUrl(video.videoUrl)} title={video.caption} frameBorder="0" allowFullScreen></iframe>
               </div>
-            ))
-          ) : (
-            <div>no vids</div>
-          )}
-        </div>
-        {loaded && instanceRef.current && data.videos.length > 1 && (
-          <>
-            <ChevronLeft
-              className={`${arrowClasses} left-0 lg:left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
-              strokeWidth={2}
-              size={36}
-              onClick={(e) => {
-                e.stopPropagation();
-                instanceRef.current?.prev();
-              }}
-            />
-            <ChevronRight
-              className={`${arrowClasses} right-0 lg:right-12  ${currentSlide === instanceRef.current.track.details?.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
-              strokeWidth={2}
-              size={36}
-              onClick={(e) => {
-                e.stopPropagation();
-                instanceRef.current?.next();
-              }}
-            />
-          </>
+              <div className=" text-center text-dark">
+                <h2 className="md:text-xl sm:text-lg text-center">{video.caption}</h2>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>no vids</div>
         )}
-        <div className="w-full">
-          <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez/highlights" target="_blank" className="flex justify-end items-center gap-1 cursor-pointer text-neutral-900 hover:text-secondary">
-            view more on <span className="text-orange-500"> hudl</span>
-            <RxOpenInNewWindow />
-          </Link>
-        </div>
       </div>
-    </>
+      {loaded && instanceRef.current && data.videos.length > 1 && (
+        <>
+          <ChevronLeft
+            className={`${arrowClasses} left-0 lg:left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
+            strokeWidth={2}
+            size={36}
+            onClick={(e) => {
+              e.stopPropagation();
+              instanceRef.current?.prev();
+            }}
+          />
+          <ChevronRight
+            className={`${arrowClasses} right-0 lg:right-12  ${currentSlide === instanceRef.current.track.details?.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
+            strokeWidth={2}
+            size={36}
+            onClick={(e) => {
+              e.stopPropagation();
+              instanceRef.current?.next();
+            }}
+          />
+        </>
+      )}
+      <div className="w-full">
+        <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez/highlights" target="_blank" className="flex justify-end items-center gap-1 cursor-pointer text-neutral-900 hover:text-secondary">
+          view more on <span className="text-orange-500"> hudl</span>
+          <RxOpenInNewWindow />
+        </Link>
+      </div>
+    </main>
   );
 }

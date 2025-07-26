@@ -77,12 +77,7 @@ export default function FullPageWrapper() {
 
       {/* Hudl */}
       <section data-section-name="Hudl" id="hudl" className="md:h-screen bg-neutral-50 md:snap-start">
-        <h3 className="flex flex-row justify-center items-center gap-x-3 text-3xl uppercase lg:text-5xl font-bold text-neutral-950">
-          <span>
-            <Image src="/hudl-logo-vector.svg" alt="Hudl Logo" width={150} height={150} />
-          </span>
-          <span> Highlights</span>
-        </h3>
+        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Hudl Highlights</h3>
         <HudlVids />
       </section>
 

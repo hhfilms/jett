@@ -64,8 +64,8 @@ export default function VideoGallery() {
       <BiLoaderCircle className="text-7xl animate-spin" />
     </div>
   ) : (
-    <div className="w-full relative aspect-video max-w-6xl mx-auto lg:px-4 flex flex-row items-center justify-center">
-      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-square md:aspect-video relative">
+    <main className="w-full max-w-6xl py-2 mb-22 relative mx-auto">
+      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-video relative">
         {videos ? (
           videos.map((video, idx) => (
             <div key={video.title} className="flex flex-col">
@@ -109,6 +109,6 @@ export default function VideoGallery() {
           />
         </>
       )}
-    </div>
+    </main>
   );
 }
