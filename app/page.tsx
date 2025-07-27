@@ -72,6 +72,17 @@ export default async function Home() {
     <>
       <Head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCTDDRZGKB"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-RCTDDRZGKB');
+            `,
+          }}
+        />
       </Head>
       <SanityDataProvider initialData={{bio, stats, articles, photos, schedule, videos}}>
         <SanityLiveUpdater />
