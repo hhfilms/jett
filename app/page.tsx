@@ -4,6 +4,7 @@ import type {Stat, Article, Photo, Schedule, Video, Bio} from "@/types/types";
 import FullPageWrapper from "@/components/FullPageWrapper";
 import {SanityDataProvider} from "@/context/SanityDataContext";
 import SanityLiveUpdater from "@/components/SanityLiveUpdater";
+import {GoogleAnalytics, GoogleTagManager} from "@next/third-parties/google";
 
 const STATS_QUERY = `*[_type == "stat"] | order(gameDate asc)[0...12]{...}`;
 const BIO_QUERY = `*[_type == "bio"] | order(gameDate asc)[0...12]{...}`;
@@ -72,21 +73,12 @@ export default async function Home() {
     <>
       <Head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCTDDRZGKB"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-RCTDDRZGKB');
-            `,
-          }}
-        />
       </Head>
       <SanityDataProvider initialData={{bio, stats, articles, photos, schedule, videos}}>
         <SanityLiveUpdater />
         <FullPageWrapper />
+        <GoogleAnalytics gaId="G-RCTDDRZGKB" />
+        <GoogleTagManager gtmId="GT-P8Q7QP3F" />
       </SanityDataProvider>
     </>
   );
