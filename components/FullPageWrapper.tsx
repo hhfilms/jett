@@ -36,9 +36,10 @@ export default function FullPageWrapper() {
         <Bio />
       </section>
 
-      {/* Schedule */}
-      <section data-section-name="Schedule" id="schedule" className="bg-neutral-900 md:snap-start w-full py-8">
-        <Schedule />
+      {/* Hudl */}
+      <section data-section-name="Hudl" id="hudl" className="md:h-screen bg-neutral-50 md:snap-start">
+        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Hudl Highlights</h3>
+        <HudlVids />
       </section>
 
       {/* Stats */}
@@ -67,6 +68,19 @@ export default function FullPageWrapper() {
         </div>
       </section>
 
+      {/* YouTube */}
+      <section data-section-name="YouTube" id="youtube" className="md:h-screen bg-neutral-50 md:snap-start">
+        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">YouTube</h3>
+        <div className="w-full aspect-video max-w-6xl mx-auto lg:px-4">
+          <YoutubeGallery />
+        </div>
+      </section>
+
+      {/* Schedule */}
+      <section data-section-name="Schedule" id="schedule" className="bg-neutral-900 md:snap-start w-full py-8">
+        <Schedule />
+      </section>
+
       {/* Articles*/}
       <section data-section-name="News" id="news" className="bg-neutral-50 md:h-screen md:snap-start">
         <div className="flex flex-col justify-center items-center w-full h-full">
@@ -75,25 +89,11 @@ export default function FullPageWrapper() {
         </div>
       </section>
 
-      {/* Hudl */}
-      <section data-section-name="Hudl" id="hudl" className="md:h-screen bg-neutral-50 md:snap-start">
-        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Hudl Highlights</h3>
-        <HudlVids />
-      </section>
-
       {/* Photos */}
       <section data-section-name="Photos" id="photos" className="bg-neutral-50 md:snap-start w-full">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Photos</h3>
           <PhotoGallery />
-        </div>
-      </section>
-
-      {/* YouTube */}
-      <section data-section-name="YouTube" id="youtube" className="md:h-screen bg-neutral-50 md:snap-start">
-        <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">YouTube</h3>
-        <div className="w-full aspect-video max-w-6xl mx-auto lg:px-4">
-          <YoutubeGallery />
         </div>
       </section>
 
