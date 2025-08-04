@@ -1,5 +1,5 @@
 import {defineType, defineField} from "sanity";
-import Note from "@/components/Note";
+import {BioNote} from "@/components/Note";
 
 export const bioType = defineType({
   name: "bio",
@@ -10,7 +10,7 @@ export const bioType = defineType({
       name: "notice",
       type: "string",
       components: {
-        input: Note,
+        input: BioNote,
       },
     }),
     defineField({

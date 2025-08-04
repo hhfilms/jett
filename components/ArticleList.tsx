@@ -5,12 +5,12 @@ import {useState} from "react";
 import {useSanityData} from "@/context/SanityDataContext";
 import {useKeenSlider} from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import {ChevronLeft, ChevronRight} from "lucide-react";
+import SliderArrows from "@/components/SliderArrows";
 
 export default function Articles() {
-  const arrowClasses = "absolute block top-1/2 -translate-y-1/2 cursor-pointer";
   const {data} = useSanityData();
   const [loaded, setLoaded] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     loop: false,
@@ -30,10 +30,14 @@ export default function Articles() {
     created() {
       setLoaded(true);
     },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
   });
 
   return (
     <main className="w-full max-w-6xl py-2 mb-22 relative">
+      <p>Length: {data.articles.length}</p>
       <div ref={sliderRef} className="keen-slider relative">
         {data.articles.map((article, idx) => (
           <article key={article._id} className={`keen-slider__slide number-slide${idx} bg-white md:rounded overflow-hidden shadow-lg`}>
@@ -50,26 +54,13 @@ export default function Articles() {
           </article>
         ))}
         {loaded && instanceRef.current && instanceRef.current.track?.details && (
-          <>
-            <ChevronLeft
-              className={`${arrowClasses} left-0 text-primary`}
-              strokeWidth={2}
-              size={36}
-              onClick={(e) => {
-                e.stopPropagation();
-                instanceRef.current?.prev();
-              }}
-            />
-            <ChevronRight
-              className={`${arrowClasses} right-0 text-primary`}
-              strokeWidth={2}
-              size={36}
-              onClick={(e) => {
-                e.stopPropagation();
-                instanceRef.current?.next();
-              }}
-            />
-          </>
+          <SliderArrows
+            className="top-1/2"
+            onPrev={() => instanceRef.current?.prev()}
+            onNext={() => instanceRef.current?.next()}
+            currentSlide={currentSlide}
+            totalSlides={instanceRef.current?.track.details.slides.length || 0}
+          />
         )}
       </div>
     </main>

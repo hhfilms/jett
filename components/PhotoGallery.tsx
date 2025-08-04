@@ -6,7 +6,7 @@ import {useState} from "react";
 import {useKeenSlider} from "keen-slider/react";
 import {KeenSliderInstance} from "keen-slider";
 import "keen-slider/keen-slider.min.css";
-import {ChevronLeft, ChevronRight} from "lucide-react";
+import SliderArrows from "@/components/SliderArrows";
 
 function ThumbnailPlugin(mainRef: React.RefObject<KeenSliderInstance | null>) {
   return (slider: KeenSliderInstance) => {
@@ -42,7 +42,6 @@ function ThumbnailPlugin(mainRef: React.RefObject<KeenSliderInstance | null>) {
 }
 
 export default function PhotoGallery() {
-  const arrowClasses = "absolute block top-1/3 -translate-y-1/2 cursor-pointer";
   const {data} = useSanityData();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -84,26 +83,13 @@ export default function PhotoGallery() {
         ))}
       </div>
       {loaded && instanceRef.current && (
-        <>
-          <ChevronLeft
-            className={`${arrowClasses} left-0 lg:left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
-            strokeWidth={2}
-            size={36}
-            onClick={(e) => {
-              e.stopPropagation();
-              instanceRef.current?.prev();
-            }}
-          />
-          <ChevronRight
-            className={`${arrowClasses} right-0 lg:right-12  ${currentSlide === instanceRef.current.track.details?.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
-            strokeWidth={2}
-            size={36}
-            onClick={(e) => {
-              e.stopPropagation();
-              instanceRef.current?.next();
-            }}
-          />
-        </>
+        <SliderArrows
+          className="top-1/3"
+          onPrev={() => instanceRef.current?.prev()}
+          onNext={() => instanceRef.current?.next()}
+          currentSlide={currentSlide}
+          totalSlides={instanceRef.current?.track.details.slides.length || 0}
+        />
       )}
 
       <div ref={thumbnailRef} className="keen-slider thumbnail">

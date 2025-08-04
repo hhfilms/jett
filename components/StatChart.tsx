@@ -113,8 +113,8 @@ export default function StatChart() {
   };
 
   return (
-    <main className="w-full px-6 relative">
-      <div className="flex space-x-2 justify-center mb-6">
+    <main className="w-full relative lg:px-8">
+      <div className="flex space-x-2 justify-center md:mb-6">
         {seasons.map((season) => (
           <button
             key={season}
@@ -125,22 +125,22 @@ export default function StatChart() {
         ))}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-2 justify-center align-bottom">
-        <div className="px-4 h-[300px] flex justify-center">
+        <div className="px-2 md:px-4 h-[300px] flex justify-center">
           <Bar data={passingChartData} options={passingOptions as import("chart.js").ChartOptions<"bar">} />
         </div>
-        <div className="px-4 h-[300px] flex justify-between">
+        <div className="px-2 md:px-4 h-[300px] flex justify-center">
           <Bar data={tdsPerGameChartData} options={tdsOptions as import("chart.js").ChartOptions<"bar">} />
         </div>
-        <div className="px-4 h-[300px] flex justify-between">
+        <div className="px-2 md:px-4 h-[300px] flex justify-center">
           <Bar data={tdsVsIntsChartData} options={tdsIntsOptions as import("chart.js").ChartOptions<"bar">} />
         </div>
-        <div className="px-4 h-[300px] flex justify-between">
+        <div className="px-2 md:px-4 h-[300px] flex justify-center">
           <Line data={percentageChartData} options={percentageOptions as import("chart.js").ChartOptions<"line">} />
         </div>
-        <div className="px-4 h-[300px] flex justify-between">
+        <div className="px-2 md:px-4 h-[300px] flex justify-center">
           <Line data={yardsPerGameChartData} options={yardsOptions as import("chart.js").ChartOptions<"line">} />
         </div>
-        <div className="px-4 h-[300px] flex justify-between">
+        <div className="px-2 md:px-4 h-[300px] flex justify-center">
           <Line data={rushingChartData} options={rushingOptions as import("chart.js").ChartOptions<"line">} />
         </div>
       </div>

@@ -1,23 +1,31 @@
-import { defineType, defineField } from 'sanity'
+import {defineType, defineField} from "sanity";
+import {HudlNote} from "@/components/Note";
 
 export const videoType = defineType({
-  name: 'video',
-  title: 'Video',
-  type: 'document',
+  name: "video",
+  title: "Hudle Vids",
+  type: "document",
   fields: [
     defineField({
-      name: 'videoUrl',
-      title: 'Video URL',
-      type: 'url',
+      name: "notice",
+      type: "string",
+      components: {
+        input: HudlNote,
+      },
+    }),
+    defineField({
+      name: "videoUrl",
+      title: "Video URL",
+      type: "url",
       validation: (rule) =>
         rule.required().uri({
-          scheme: ['http', 'https'],
+          scheme: ["http", "https"],
         }),
     }),
     defineField({
-      name: 'caption',
-      title: 'Caption',
-      type: 'string',
+      name: "caption",
+      title: "Caption",
+      type: "string",
     }),
   ],
-})
+});

@@ -2,14 +2,13 @@ import {useSanityData} from "@/context/SanityDataContext";
 import React from "react";
 import {useKeenSlider} from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import {ChevronLeft, ChevronRight} from "lucide-react";
 import {useState} from "react";
 import {RxOpenInNewWindow} from "react-icons/rx";
 import Link from "next/link";
+import SliderArrows from "@/components/SliderArrows";
 
 export default function Hudl() {
   const {data} = useSanityData();
-  const arrowClasses = "absolute block top-1/2 -translate-y-1/2 cursor-pointer";
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -40,7 +39,7 @@ export default function Hudl() {
 
   return (
     <main className="w-full max-w-6xl py-2 mb-22 relative mx-auto">
-      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-video square md:aspect-video relative">
+      <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-video relative">
         {data.videos ? (
           data.videos.map((video, idx) => (
             <div key={video._id} className="flex flex-col">
@@ -57,26 +56,13 @@ export default function Hudl() {
         )}
       </div>
       {loaded && instanceRef.current && data.videos.length > 1 && (
-        <>
-          <ChevronLeft
-            className={`${arrowClasses} left-0 lg:left-12  ${currentSlide === 0 ? "text-gray-200" : "text-primary"}`}
-            strokeWidth={2}
-            size={36}
-            onClick={(e) => {
-              e.stopPropagation();
-              instanceRef.current?.prev();
-            }}
-          />
-          <ChevronRight
-            className={`${arrowClasses} right-0 lg:right-12  ${currentSlide === instanceRef.current.track.details?.slides.length - 1 ? "text-gray-200" : "text-primary"}`}
-            strokeWidth={2}
-            size={36}
-            onClick={(e) => {
-              e.stopPropagation();
-              instanceRef.current?.next();
-            }}
-          />
-        </>
+        <SliderArrows
+          className="top-1/2"
+          onPrev={() => instanceRef.current?.prev()}
+          onNext={() => instanceRef.current?.next()}
+          currentSlide={currentSlide}
+          totalSlides={instanceRef.current.track.details?.slides.length || 0}
+        />
       )}
       <div className="w-full">
         <Link href="https://www.hudl.com/profile/18129509/Jett-Lopez/highlights" target="_blank" className="flex justify-end items-center gap-1 cursor-pointer text-neutral-900 hover:text-secondary">
