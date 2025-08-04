@@ -89,6 +89,7 @@ export type Bio = {
   heightInches?: number;
   weight?: number;
   statement?: string;
+  gpa?: number;
 };
 
 export type ArticlesArray = Article[];

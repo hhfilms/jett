@@ -62,6 +62,11 @@ export const bioType = defineType({
       type: "number",
     }),
     defineField({
+      name: "gpa",
+      title: "GPA",
+      type: "number",
+    }),
+    defineField({
       name: "statement",
       title: "Personal Statement",
       type: "string",

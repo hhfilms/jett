@@ -63,7 +63,7 @@ export default function StatBox({year, classes}: {year: number; classes?: string
         </div>
         <div>
           <h5 className="text-sm font-light">Rating</h5>
-          <motion.p className="text-3xl text-primary">{ratingAnimated}</motion.p>
+          <motion.p className="text-3xl text-primary">{ratingAnimated.toFixed(1)}</motion.p>
         </div>
         <div>
           <h5 className="text-sm font-light">Interceptions</h5>
