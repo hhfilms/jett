@@ -25,7 +25,7 @@ const PHOTOS_QUERY = `*[_type == "photo"] | order(featured desc, _createdAt desc
 const options = {next: {revalidate: 30}};
 
 export const metadata = {
-  title: "Jett Lopez | Quarterback Stats, Schedule, & Highlights",
+  title: "Jett Lopez | High School Quarterback - Amarillo, TX",
   description: "Follow Jett Lopez's high school football journey: game stats, schedule, photos, & articles.",
   openGraph: {
     title: "Jett Lopez | High School Quarterback",
