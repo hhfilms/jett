@@ -38,7 +38,7 @@ export default function Hudl() {
   }
 
   return (
-    <main className="w-full max-w-6xl py-2 mb-22 relative mx-auto">
+    <main className="w-full max-w-6xl relative mx-auto">
       <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-video relative">
         {data.videos ? (
           data.videos.map((video, idx) => (

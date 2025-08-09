@@ -36,7 +36,7 @@ export default function Articles() {
   });
 
   return (
-    <main className="w-full max-w-6xl py-2 mb-22 relative">
+    <main className="w-full max-w-6xl relative">
       <div ref={sliderRef} className="keen-slider relative">
         {data.articles.map((article, idx) => (
           <article key={article._id} className={`keen-slider__slide number-slide${idx} bg-white md:rounded overflow-hidden shadow-lg`}>

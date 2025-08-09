@@ -29,21 +29,21 @@ export default function FullPageWrapper() {
 
   if (!hasMounted) return null;
   return (
-    <div className="h-screen overflow-y-scroll snap-y snap-mandatory relative">
+    <div className="h-screen overflow-y-scroll snap-y snap-mandatory relative bg-neutral-50">
       {/* Bio */}
-      <section data-section-name="Bio" id="bio" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950 md:snap-start relative">
+      <section data-section-name="Bio" id="bio" className="bg-[url('/hero-2.png')] bg-center bg-cover bg-no-repeat h-screen bg-neutral-950 md:snap-start relative py-2 mb-22">
         <Header classes="px-8" />
         <Bio />
       </section>
 
       {/* Hudl */}
-      <section data-section-name="Hudl" id="hudl" className="md:h-screen bg-neutral-50 md:snap-start">
+      <section data-section-name="Hudl" id="hudl" className=" bg-neutral-50 md:snap-start py-2 mb-12">
         <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Hudl Highlights</h3>
         <HudlVids />
       </section>
 
       {/* Stats */}
-      <section data-section-name="Stats" id="stats" className="lg:h-screen bg-neutral-50 md:snap-start">
+      <section data-section-name="Stats" id="stats" className=" bg-neutral-50 md:snap-start py-2 mb-22">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Season Stats</h3>
           <div className="flex gap-0 mb-8">
@@ -69,7 +69,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* YouTube */}
-      <section data-section-name="YouTube" id="youtube" className="md:h-screen bg-neutral-50 md:snap-start">
+      <section data-section-name="YouTube" id="youtube" className=" bg-neutral-50 md:snap-start py-2 mb-22">
         <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center py-4">YouTube</h3>
         <div className="w-full aspect-video max-w-6xl mx-auto lg:px-4">
           <YoutubeGallery />
@@ -77,12 +77,12 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Schedule */}
-      <section data-section-name="Schedule" id="schedule" className="bg-neutral-900 md:snap-start w-full py-8">
+      <section data-section-name="Schedule" id="schedule" className="bg-neutral-900 md:snap-start w-full py-8 mb-22">
         <Schedule />
       </section>
 
       {/* Articles*/}
-      <section data-section-name="News" id="news" className="bg-neutral-50 md:h-screen md:snap-start">
+      <section data-section-name="News" id="news" className="bg-neutral-50  md:snap-start py-2 mb-22">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">In the News</h3>
           <Articles />
@@ -90,7 +90,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Photos */}
-      <section data-section-name="Photos" id="photos" className="bg-neutral-50 md:snap-start w-full">
+      <section data-section-name="Photos" id="photos" className="bg-neutral-50 md:snap-start w-full py-2 mb-22">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Photos</h3>
           <PhotoGallery />
@@ -98,7 +98,7 @@ export default function FullPageWrapper() {
       </section>
 
       {/* Contact */}
-      <section data-section-name="Contact" id="contact" className=" bg-[#e0e5ec] md:snap-start w-full">
+      <section data-section-name="Contact" id="contact" className=" bg-[#e0e5ec] md:snap-start w-full pt-8">
         <div className="flex flex-col justify-center items-center w-full h-full">
           <h3 className="text-3xl uppercase lg:text-5xl font-bold text-neutral-950 text-center pt-4">Connect with Me</h3>
           <p className="px-4 lg:px-0 text-xl mb-4 text-center text-neutral-500 font-extralight">Looking to talk football, recruiting, or partnerships? Let’s connect</p>
