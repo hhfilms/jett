@@ -11,15 +11,35 @@ export default function Hudl() {
   const {data} = useSanityData();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const [sliderRef, instanceRef] = useKeenSlider({
-    initial: 0,
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details?.rel);
+  const [sliderRef, instanceRef] = useKeenSlider(
+    {
+      initial: 0,
+      slides: { perView: 1, spacing: 8 },
+      renderMode: "performance",
+      rubberband: true,
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details?.rel);
+      },
+      created() {
+        setLoaded(true);
+      },
     },
-    created() {
-      setLoaded(true);
-    },
-  });
+    [
+      (slider) => {
+        if (typeof window === "undefined" || !('ResizeObserver' in window)) return;
+        const ro = new ResizeObserver(() => slider.update());
+        ro.observe(slider.container);
+        slider.on("destroyed", () => ro.disconnect());
+      },
+    ]
+  );
+
+  React.useEffect(() => {
+    if (!instanceRef.current) return;
+    // Update layout on the next frame after videos change
+    const id = requestAnimationFrame(() => instanceRef.current?.update());
+    return () => cancelAnimationFrame(id);
+  }, [data.videos?.length]);
 
   function getEmbedUrl(url: string): string {
     try {
@@ -40,19 +60,26 @@ export default function Hudl() {
   return (
     <main className="w-full max-w-6xl relative mx-auto">
       <div ref={sliderRef} className="keen-slider mb-4 w-full aspect-video relative">
-        {data.videos ? (
-          data.videos.map((video, idx) => (
-            <div key={video._id} className="flex flex-col">
-              <div className={`keen-slider__slide number-slide${idx} aspect-video relative w-full h-full`}>
-                <iframe className="w-full h-full" src={getEmbedUrl(video.videoUrl)} title={video.caption} frameBorder="0" allowFullScreen></iframe>
+        {data.videos && data.videos.length > 0 ? (
+          data.videos.map((video) => (
+            <div key={video._id} className="keen-slider__slide flex flex-col">
+              <div className="aspect-video relative w-full h-full">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src={getEmbedUrl(video.videoUrl)}
+                  title={video.caption}
+                  frameBorder="0"
+                  allowFullScreen
+                  onLoad={() => instanceRef.current?.update()}
+                />
               </div>
-              <div className=" text-center text-dark">
+              <div className="text-center text-dark">
                 <h2 className="md:text-xl sm:text-lg text-center">{video.caption}</h2>
               </div>
             </div>
           ))
         ) : (
-          <div>no vids</div>
+          <div className="keen-slider__slide flex items-center justify-center">no vids</div>
         )}
       </div>
       {loaded && instanceRef.current && data.videos.length > 1 && (
@@ -61,7 +88,7 @@ export default function Hudl() {
           onPrev={() => instanceRef.current?.prev()}
           onNext={() => instanceRef.current?.next()}
           currentSlide={currentSlide}
-          totalSlides={instanceRef.current.track.details?.slides.length || 0}
+          totalSlides={instanceRef.current?.track.details?.slides.length || 0}
         />
       )}
       <div className="w-full">
