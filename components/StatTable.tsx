@@ -7,7 +7,7 @@ export default function StatTable() {
   // Extract unique seasons
   const seasons = Array.from(new Set(data.stats.map((stat) => stat.season)));
   // Default to the most recent season
-  const [selectedSeason, setSelectedSeason] = useState(seasons[0]);
+  const [selectedSeason, setSelectedSeason] = useState(seasons[seasons.length - 1] || "");
   // Find the selected season's stats and use its games array
   const seasonStats = data.stats.find((stat) => stat.season === selectedSeason);
   const filteredStats = seasonStats?.games || [];
@@ -43,24 +43,26 @@ export default function StatTable() {
             {filteredStats.map((stat) => (
               <tr key={stat._key} className="even:bg-neutral-100 odd:bg-white">
                 <td className="px-4 py-2 w-[10%]">{stat.opponent}</td>
-                <td className="px-4 py-2 w-[10%]">{stat.completions}</td>
-                <td className="px-4 py-2 w-[10%]">{stat.attempts}</td>
-                <td className="px-4 py-2 w-[10%]">{stat.passingYards}</td>
-                <td className="px-4 py-2 w-[10%]">{((stat.completions / stat.attempts) * 100).toFixed(1)}%</td>
-                <td className="px-4 py-2 w-[10%]">{stat.touchdowns}</td>
-                <td className="px-4 py-2 w-[10%]">{stat.interceptions}</td>
+                <td className="px-4 py-2 w-[10%]">{stat.completions || "-"} </td>
+                <td className="px-4 py-2 w-[10%]">{stat.attempts || "-"}</td>
+                <td className="px-4 py-2 w-[10%]">{stat.passingYards || "-"}</td>
+                <td className="px-4 py-2 w-[10%]">{stat.attempts > 0 ? ((stat.completions / stat.attempts) * 100).toFixed(1) + "%" : "-"}</td>{" "}
+                <td className="px-4 py-2 w-[10%]">{stat.touchdowns || "-"}</td>
+                <td className="px-4 py-2 w-[10%]">{stat.interceptions || "-"}</td>
                 <td className="px-4 py-2 w-[10%]">
-                  {(
-                    ((Math.max(0, Math.min(2.375, (stat.completions / stat.attempts - 0.3) * 5)) +
-                      Math.max(0, Math.min(2.375, (stat.passingYards / stat.attempts - 3) * 0.25)) +
-                      Math.max(0, Math.min(2.375, (stat.touchdowns / stat.attempts) * 20)) +
-                      Math.max(0, Math.min(2.375, 2.375 - (stat.interceptions / stat.attempts) * 25))) /
-                      6) *
-                    100
-                  ).toFixed(1)}
+                  {stat.attempts > 0
+                    ? (
+                        ((Math.max(0, Math.min(2.375, (stat.completions / stat.attempts - 0.3) * 5)) +
+                          Math.max(0, Math.min(2.375, (stat.passingYards / stat.attempts - 3) * 0.25)) +
+                          Math.max(0, Math.min(2.375, (stat.touchdowns / stat.attempts) * 20)) +
+                          Math.max(0, Math.min(2.375, 2.375 - (stat.interceptions / stat.attempts) * 25))) /
+                          6) *
+                        100
+                      ).toFixed(1)
+                    : "-"}
                 </td>
-                <td className="px-4 py-2 w-[10%]">{stat.rushingYards}</td>
-                <td className="px-4 py-2 w-[10%]">{stat.rushingTds}</td>
+                <td className="px-4 py-2 w-[10%]">{stat.rushingYards || "-"}</td>
+                <td className="px-4 py-2 w-[10%]">{stat.rushingTds || "-"}</td>
               </tr>
             ))}
           </tbody>
