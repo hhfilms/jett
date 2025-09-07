@@ -8,8 +8,8 @@ import {GoogleAnalytics, GoogleTagManager} from "@next/third-parties/google";
 
 const STATS_QUERY = `*[_type == "stat"] | order(gameDate asc)[0...12]{...}`;
 const BIO_QUERY = `*[_type == "bio"] | order(gameDate asc)[0...12]{...}`;
-const VIDEOS_QUERY = `*[_type == "video"] | order(publishedAt asc)[0...12]{...}`;
-const ARTICLES_QUERY = `*[_type == "article"] | order(publishedAt desc)[0...12]{...}`;
+const VIDEOS_QUERY = `*[_type == "video"] | order(_createdAt asc)[0...12]{...}`;
+const ARTICLES_QUERY = `*[_type == "article"] | order(_createdAt desc)[0...12]{...}`;
 const SCHEDULE_QUERY = `*[_type == "schedule"] | order(publishedAt asc)[0...12]{...}`;
 const PHOTOS_QUERY = `*[_type == "photo"] | order(featured desc, _createdAt desc) {
   _id,
